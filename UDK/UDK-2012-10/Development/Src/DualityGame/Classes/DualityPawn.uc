@@ -25,9 +25,9 @@ defaultproperties
         BlockZeroExtent=true;
 		// NOTE: Mesh properties to change to add new model or animation set
 			PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
-            AnimSets(0)=AnimSet'Duality.TestAnimSet'
-            AnimTreeTemplate=AnimTree'Duality.TestAnimTree'
-            SkeletalMesh=SkeletalMesh'Duality.TestCatalystModel01'
+            AnimSets(0)=AnimSet'Duality.Animations.TestAnimSet'
+            AnimTreeTemplate=AnimTree'Duality.Animations.TestAnimTree'
+            SkeletalMesh=SkeletalMesh'Duality.Meshes.TestCatalystModel01'
 	End Object
 	Components.Add(PawnMesh)
 	
