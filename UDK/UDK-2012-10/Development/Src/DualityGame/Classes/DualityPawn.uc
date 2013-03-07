@@ -31,6 +31,9 @@ defaultproperties
 	End Object
 	Components.Add(PawnMesh)
 	
+	health=1000;
+	healthmax=1000;
+	
 	// Set up collision cylinder for pawn
 	Mesh=PawnMesh;
     Components.Add(PawnMesh); 
