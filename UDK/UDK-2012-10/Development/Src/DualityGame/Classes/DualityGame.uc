@@ -4,7 +4,7 @@ class DualityGame extends FrameworkGame;
 defaultproperties
 {
    PlayerControllerClass=class'DualityGame.DualityPlayerController'
-   DefaultPawnClass=class'DualityGame.DualityPawn'
+   DefaultPawnClass=class'DualityGame.DualityPlayerPawn'
    HUDType=class'DualityGame.DualityHUD'
    bDelayedStart=false
 }
