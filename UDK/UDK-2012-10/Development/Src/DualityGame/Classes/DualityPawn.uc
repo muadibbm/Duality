@@ -13,7 +13,7 @@ function AddDefaultInventory()
 
 defaultproperties
 {
-    // PLayer's health/mass
+    // Player's health/mass
     Health=1000;
     HealthMax=1000;
 
@@ -45,11 +45,10 @@ defaultproperties
       AnimTreeTemplate=AnimTree'Duality.Animations.TestAnimTree'
       SkeletalMesh=SkeletalMesh'Duality.Meshes.CatFinal'
 	  End Object
+    Mesh=PawnMesh;
 	  Components.Add(PawnMesh)
 	
 	  // Set up collision cylinder for pawn
-	  Mesh=PawnMesh;
-    Components.Add(PawnMesh); 
 	  CollisionType=COLLIDE_BlockAll
 	  Begin Object Name=CollisionCylinder
 		  CollisionRadius=+0023.000000
