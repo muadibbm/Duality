@@ -1,5 +1,5 @@
 class DualityHUD extends MobileHUD;
 
-defaultproperties
+DefaultProperties
 {
 }
