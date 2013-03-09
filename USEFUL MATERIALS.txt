@@ -1,0 +1,12 @@
+ParticleSystem'CTF_Flag_IronGuard.Effects.P_CTF_Flag_IronGuard_Idle_Blue'
+
+ParticleSystem'KismetGame_Assets.Effects.P_EarBuzz_01'
+
+ParticleSystem'Pickups.Base_Teleporter.Effects.P_Pickups_Teleporter_Idle'
+
+ParticleSystem'Pickups.Base_Teleporter.Effects.P_Pickups_Teleporter_Base_Idle'
+	
+ParticleSystem'WP_ShockRifle.Particles.P_WP_ShockRifle_Ball'
+
+
+P_VH_All_Spawn_Red
