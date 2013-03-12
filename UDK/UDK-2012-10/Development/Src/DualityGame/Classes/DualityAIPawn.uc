@@ -20,9 +20,9 @@ DefaultProperties
     End Object
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
-        SkeletalMesh=SkeletalMesh'CH_IronGuard_Male.Mesh.SK_CH_IronGuard_MaleA'
-        AnimSets(0)=AnimSet'CH_AnimHuman.Anims.K_AnimHuman_BaseMale'
-        AnimTreeTemplate=AnimTree'SandboxContent.Animations.AT_CH_Human'
+        SkeletalMesh=SkeletalMesh'Duality.Meshes.testCatalystModel01'
+        AnimSets(0)=AnimSet'Duality.Animations.TestAnimSet'
+        AnimTreeTemplate=AnimTree'Duality.Animations.TestAnimTree'
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object
