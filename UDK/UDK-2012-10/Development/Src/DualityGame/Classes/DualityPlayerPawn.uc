@@ -35,9 +35,9 @@ DefaultProperties
 	  BlockZeroExtent=true;
 	  // NOTE: Mesh properties to change to add new model or animation set
 	  PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
-	  AnimSets(0)=AnimSet'Duality.Animations.TestAnimSet'
+	  AnimSets(0)=AnimSet'Duality.Animations.join11'
 	  AnimTreeTemplate=AnimTree'Duality.Animations.TestAnimTree'
-	  SkeletalMesh=SkeletalMesh'Duality.Meshes.CatFinal'
+	  SkeletalMesh=SkeletalMesh'Duality.Meshes.CatalystExp'
   End Object
 
   // Set up collision cylinder for pawn
