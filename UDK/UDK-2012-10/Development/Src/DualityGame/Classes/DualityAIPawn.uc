@@ -1,6 +1,8 @@
 class DualityAIPawn extends DualityPawn
 	placeable;
 
+var ParticleSystem deathAnimation;
+
 function AddDefaultInventory()
 {
     //For those in the back who don't follow, SandboxPaintballGun is a custom weapon
@@ -23,6 +25,7 @@ DefaultProperties
         SkeletalMesh=SkeletalMesh'Duality.Meshes.testCatalystModel01'
         AnimSets(0)=AnimSet'Duality.Animations.TestAnimSet'
         AnimTreeTemplate=AnimTree'Duality.Animations.TestAnimTree'
+        deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object

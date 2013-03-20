@@ -72,10 +72,28 @@ Begin:
         //We can't follow, so get the hell out of this state, otherwise we'll enter an infinite loop.
         GotoState('Idle');
     }
- 
+    if (VSize(Pawn.Location - target.Location) <= 128)
+    {
+      GotoState('Kamikaze'); //Start shooting when close enough to the player.
+    }
+    else
+    {
     goto 'Begin';
+    }
 }
- 
+
+state Kamikaze
+{
+
+Begin:
+    Pawn.ZeroMovementVariables();
+    Sleep(1); //Give the pawn the time to stop.
+    target.TakeDamage(400, self, vect(0,0,0), vect(0,0,0), None);
+    pawn.Died(self, None, vect(0,0,0));
+	// Next line not working yet
+   // SpawnExplosionParticleSystem(DualityAIPawn(pawn).deathAnimation);
+    GotoState('Idle');
+}
 
 DefaultProperties
 {
