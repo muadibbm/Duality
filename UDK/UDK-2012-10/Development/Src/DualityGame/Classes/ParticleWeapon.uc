@@ -11,7 +11,7 @@ simulated event SetPosition(UDKPawn Holder)
  
   if( compo != none )
   {
-    socket = compo.GetSocketByName('WeaponSocket');
+    socket = compo.GetSocketByName('Blue');
     if( socket != none )
     {
       FinalLocation = compo.GetBoneLocation(socket.BoneName);
@@ -29,7 +29,7 @@ simulated function ProcessInstantHit(byte FiringMode, ImpactInfo Impact, optiona
   hitLoc = Impact.HitLocation;
   hitLoc.Z += 100;
 
-  WorldInfo.MyDecalManager.SpawnDecal (DecalMaterial'HU_Deck.Decals.M_Decal_GooLeak', // UMaterialInstance used for this decal.
+  WorldInfo.MyDecalManager.SpawnDecal (DecalMaterial'DualityL2.Decals.PS_BLUE', // UMaterialInstance used for this decal.
                       hitLoc, // Decal spawned at the hit location.
                       rotator(-Impact.HitNormal), // Orient decal into the surface.
                       128, 128, // Decal size in tangent/binormal directions.
@@ -42,7 +42,7 @@ simulated function ProcessInstantHit(byte FiringMode, ImpactInfo Impact, optiona
 
 simulated function TimeWeaponEquipping()
 {
-  AttachWeaponTo(Instigator.Mesh,'WeaponSocket');
+  AttachWeaponTo(Instigator.Mesh,'Blue');
   super.TimeWeaponEquipping();
 }
 
@@ -59,11 +59,11 @@ DefaultProperties
   FireInterval(0)=0.1
   Spread(0)=0
 
-  Begin Object Class=UDKSkeletalMeshComponent Name=GunMesh
-    //SkeletalMesh=SkeletalMesh'WP_LinkGun.Mesh.SK_WP_LinkGun_3P'
+   Begin Object Class=UDKSkeletalMeshComponent Name=BlueMesh
+    SkeletalMesh=SkeletalMesh'DualityL2.Meshes.test_PS'
     HiddenGame=false
     HiddenEditor=false
   End object
-  Mesh=GunMesh
-  Components.Add(GunMesh)
+  Mesh=BlueMesh
+  Components.Add(BlueMesh)
 }
