@@ -37,9 +37,12 @@ DefaultProperties
 	  BlockZeroExtent=true;
 	  // NOTE: Mesh properties to change to add new model or animation set
 	  PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
-	  AnimSets(0)=AnimSet'Duality.Animations.ROOT_JNT_CAT'
+	  AnimSets(0)=AnimSet'Duality.Animations.CAT_IDLE'
+  	  AnimSets(1)=AnimSet'Duality.Animations.CAT_FORWARD'
+	  AnimSets(2)=AnimSet'Duality.Animations.CAT_BACKWARD'
+  	  AnimSets(3)=AnimSet'Duality.Animations.CAT_SHOOTING'
 	  AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_CATALYST'
-	  SkeletalMesh=SkeletalMesh'Duality.Meshes.CatalystExp'
+	  SkeletalMesh=SkeletalMesh'Duality.Meshes.catalyst'
   End Object
 
 
