@@ -7,6 +7,7 @@ var float TossZ;
 simulated event PostBeginPlay()
 {
   super.PostBeginPlay();
+  SpawnFlightEffects();
 }
 
 function Init(vector Direction)
@@ -19,7 +20,7 @@ function Init(vector Direction)
 
 simulated function SpawnFlightEffects()
 {
-  if (WorldInfo.NetMode != NM_DedicatedServer && ProjFlightTemplate != None)
+  if (ProjFlightTemplate != None)
   {
     ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplate);
     ProjEffects.SetAbsolute(false, false, false);
@@ -30,10 +31,37 @@ simulated function SpawnFlightEffects()
   }
 }
 
+simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+{
+    if ( Other != Instigator )
+    {
+      WorldInfo.MyDecalManager.SpawnDecal ( DecalMaterial'DualityL2.Decals.PS_BLUE', HitLocation, rotator(-HitNormal), 128, 128, 256, false, FRand() * 360, none );
+        Other.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType,, self);
+        Destroy();
+    }
+}
+ 
+simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
+{
+    //Velocity = MirrorVectorByNormal(Velocity,HitNormal); //That's the bounce
+    SetRotation(Rotator(Velocity));
+    TriggerEventClass(class'SeqEvent_HitWall', Wall);
+}
+
 DefaultProperties
 {
+  Begin Object Name=CollisionCylinder
+    CollisionRadius=8
+    CollisionHeight=16
+  End Object
+
   bBlockedByInstigator=false;
+  TossZ=0.0
   Speed=1
-  MaxSpeed=1
+	MaxSpeed=100
+	AccelRate=500
   ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_BLUE'
+
+  Damage=25000000
+  MomentumTransfer=10
 }

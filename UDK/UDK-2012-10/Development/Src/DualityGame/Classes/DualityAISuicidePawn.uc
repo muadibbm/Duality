@@ -15,6 +15,14 @@ event PostBeginPlay()
     AddDefaultInventory(); //GameInfo calls it only for players, so we have to do it ourselves for AI.
 }
 
+event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
+{
+    super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
+    Health = FMax(Health-Damage,0);
+    WorldInfo.Game.Broadcast(self,Name$": Health:"@Health);
+}
+
+
 DefaultProperties
 {
     Begin Object Name=CollisionCylinder

@@ -2,8 +2,6 @@ class ParticleWeapon extends UDKWeapon;
 
 var float ProjectileSpawnOffset;
 
-
-
 // Set position of mesh
 simulated event SetPosition(UDKPawn Holder)
 {
@@ -20,7 +18,7 @@ simulated event SetPosition(UDKPawn Holder)
     {
       FinalLocation = compo.GetBoneLocation(socket.BoneName);
     }
-  } //And we probably should do something similar for the rotation <img src="http://www.moug-portfolio.info/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley"> 
+  } 
  
   SetLocation(FinalLocation);
 }
@@ -35,77 +33,91 @@ simulated function vector GetPhysicalFireStartLoc(optional vector AimDir)
 
 	if( Instigator != none )
 	{
-
 		FireRot = Instigator.GetViewRotation();
 		FireDir = vector(FireRot);
+		FireStartLoc = Instigator.GetPawnViewLocation() + (FireDir * FireOffset.X);
+		//FireStartLoc = Instigator.GetPawnViewLocation() + (FireOffset >> FireRot);
 
-		FireStartLoc = Instigator.GetPawnViewLocation() + (FireOffset >> FireRot);
-
-
-			FiredProjectileClass = GetProjectileClass();
-			if ( FiredProjectileClass != None )
+		FiredProjectileClass = GetProjectileClass();
+		if ( FiredProjectileClass != None )
+		{
+			FireEnd = FireStartLoc + FireDir * ProjectileSpawnOffset;
+			TraceFlags = bCollideComplex ? TRACEFLAG_Bullet : 0;
+			if ( FiredProjectileClass.default.CylinderComponent.CollisionRadius > 0 )
 			{
-				FireEnd = FireStartLoc + FireDir * ProjectileSpawnOffset;
-				TraceFlags = bCollideComplex ? TRACEFLAG_Bullet : 0;
-				if ( FiredProjectileClass.default.CylinderComponent.CollisionRadius > 0 )
+				FireEnd += FireDir * FiredProjectileClass.default.CylinderComponent.Translation.X;
+				ProjBox = FiredProjectileClass.default.CylinderComponent.CollisionRadius * vect(1,1,0);
+				ProjBox.Z = FiredProjectileClass.default.CylinderComponent.CollisionHeight;
+				HitActor = Trace(HitLocation, HitNormal, FireEnd, Instigator.Location, true, ProjBox,,TraceFlags);
+				if ( HitActor == None )
 				{
-					FireEnd += FireDir * FiredProjectileClass.default.CylinderComponent.Translation.X;
-					ProjBox = FiredProjectileClass.default.CylinderComponent.CollisionRadius * vect(1,1,0);
-					ProjBox.Z = FiredProjectileClass.default.CylinderComponent.CollisionHeight;
-					HitActor = Trace(HitLocation, HitNormal, FireEnd, Instigator.Location, true, ProjBox,,TraceFlags);
-					if ( HitActor == None )
-					{
-						HitActor = Trace(HitLocation, HitNormal, FireEnd, FireStartLoc, true, ProjBox,,TraceFlags);
-					}
-					else
-					{
-						FireStartLoc = Instigator.Location - FireDir*FiredProjectileClass.default.CylinderComponent.Translation.X;
-						FireStartLoc.Z = FireStartLoc.Z + FMin(Instigator.EyeHeight, Instigator.CylinderComponent.CollisionHeight - FiredProjectileClass.default.CylinderComponent.CollisionHeight - 1.0);
-						return FireStartLoc;
-					}
+					HitActor = Trace(HitLocation, HitNormal, FireEnd, FireStartLoc, true, ProjBox,,TraceFlags);
 				}
 				else
 				{
-					HitActor = Trace(HitLocation, HitNormal, FireEnd, FireStartLoc, true, vect(0,0,0),,TraceFlags);
+					FireStartLoc = Instigator.Location - FireDir*FiredProjectileClass.default.CylinderComponent.Translation.X;
+					FireStartLoc.Z = FireStartLoc.Z + FMin(Instigator.EyeHeight, Instigator.CylinderComponent.CollisionHeight - FiredProjectileClass.default.CylinderComponent.CollisionHeight - 1.0);
+					return FireStartLoc;
 				}
+			}
+			else
+			{
+				HitActor = Trace(HitLocation, HitNormal, FireEnd, FireStartLoc, true, vect(0,0,0),,TraceFlags);
+			}
 			return (HitActor == None) ? FireEnd : HitLocation - 3*FireDir;
-		      
 		}
 		return FireStartLoc;
 	}
-
 	return Location;
 }
 
 simulated function Projectile ProjectileFire()
 {
-    local vector        RealStartLoc;
-    local Projectile    SpawnedProjectile;
+	local vector RealStartLoc, StartTrace, EndTrace, AimDir, HitLocation, HitNormal;
+	local Projectile	SpawnedProjectile;
+  local Actor HitActor;
 
-    // tell remote clients that we fired, to trigger effects
-    IncrementFlashCount();
+	// tell remote clients that we fired, to trigger effects
+	IncrementFlashCount();
 
-    if( Role == ROLE_Authority )
+	if( Role == ROLE_Authority )
+	{
+		// this is the location where the projectile is spawned.
+		RealStartLoc = GetPhysicalFireStartLoc();
+    StartTrace = Instigator.GetWeaponStartTraceLocation();
+    
+    if ( RealStartLoc != StartTrace )
     {
-        // this is the location where the projectile is spawned.
-        RealStartLoc = GetPhysicalFireStartLoc();
-	//RealStartLoc.Z += 450;
-	`log(RealStartLoc);
-        // Spawn projectile
-        SpawnedProjectile = Spawn(GetProjectileClass(),,, RealStartLoc);
-		
-        if( SpawnedProjectile != None && !SpawnedProjectile.bDeleteMe )
-        {
-	    if(instigator == None) {
-	      `log("instigator not found");
-	    }
-	    SpawnedProjectile.Init( Vector(instigator.Rotation) );
-	    WorldInfo.Game.Broadcast(self,"***Fire***");
-        }
-        // Return it up the line
-        return SpawnedProjectile;
+      EndTrace = StartTrace + vector(GetAdjustedAim( StartTrace ) * GetTraceRange());
+      HitActor = Instigator.Trace(HitLocation, HitNormal, EndTrace, StartTrace, FALSE);
+
+      if (HitActor != None)
+      {
+        AimDir = HitLocation - RealStartLoc;
+      }
+      else
+      {
+        AimDir = RealStartLoc;
+      }
     }
-    return None;
+    else
+    {
+      AimDir = RealStartLoc;
+    }
+
+		// Spawn projectile
+		SpawnedProjectile = Spawn(GetProjectileClass(),,, RealStartLoc);
+		if( SpawnedProjectile != None && !SpawnedProjectile.bDeleteMe )
+		{
+      RealStartLoc.Z += 2000;
+			SpawnedProjectile.Init( Vector(GetAdjustedAim( RealStartLoc )) );
+		}
+
+		// Return it up the line
+		return SpawnedProjectile;
+	}
+
+	return None;
 }
 
 
@@ -152,6 +164,8 @@ DefaultProperties
   WeaponProjectiles(1)=class'DualityGame.ParticleProjectile'
   FireInterval(1)=0.01
   Spread(1) = 0
+
+	WeaponRange=500
 
    Begin Object Class=UDKSkeletalMeshComponent Name=BlueMesh
     SkeletalMesh=SkeletalMesh'DualityL2.Meshes.test_PS'
