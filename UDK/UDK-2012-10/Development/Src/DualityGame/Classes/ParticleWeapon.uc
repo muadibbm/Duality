@@ -165,7 +165,7 @@ DefaultProperties
   FireInterval(1)=0.01
   Spread(1) = 0
 
-	WeaponRange=500
+	WeaponRange=1000
 
    Begin Object Class=UDKSkeletalMeshComponent Name=BlueMesh
     SkeletalMesh=SkeletalMesh'DualityL2.Meshes.test_PS'
