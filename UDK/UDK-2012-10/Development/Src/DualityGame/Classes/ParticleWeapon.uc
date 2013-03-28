@@ -109,7 +109,6 @@ simulated function Projectile ProjectileFire()
 		SpawnedProjectile = Spawn(GetProjectileClass(),,, RealStartLoc);
 		if( SpawnedProjectile != None && !SpawnedProjectile.bDeleteMe )
 		{
-      RealStartLoc.Z += 2000;
 			SpawnedProjectile.Init( Vector(GetAdjustedAim( RealStartLoc )) );
 		}
 
@@ -120,29 +119,16 @@ simulated function Projectile ProjectileFire()
 	return None;
 }
 
-
-// Updated to shoot Decal where mouse is pointing
-simulated function ProcessInstantHit(byte FiringMode, ImpactInfo Impact, optional int NumHits)
+// Set weapon to be single shot
+simulated function bool ShouldRefire()
 {
-  local Vector hitLoc;
-
-  hitLoc = Impact.HitLocation;
-  hitLoc.Z += 100;
-
-  WorldInfo.MyDecalManager.SpawnDecal (DecalMaterial'DualityL2.Decals.PS_BLUE', // UMaterialInstance used for this decal.
-                      hitLoc, // Decal spawned at the hit location.
-                      rotator(-Impact.HitNormal), // Orient decal into the surface.
-                      128, 128, // Decal size in tangent/binormal directions.
-                      256, // Decal size in normal direction.
-                      false, // If TRUE, use "NoClip" codepath.
-                      FRand() * 360, // random rotation
-                      Impact.HitInfo.HitComponent // If non-NULL, consider this component only.
-  );
+	ClearPendingFire(1);
+	return false;
 }
 
 simulated function TimeWeaponEquipping()
 {
-  AttachWeaponTo(Instigator.Mesh,'Blue');
+  AttachWeaponTo(Instigator.Mesh,'CANNON_LEFT');
   super.TimeWeaponEquipping();
 }
 
@@ -154,26 +140,14 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional Name 
 
 DefaultProperties
 {
-  FiringStatesArray(0)=WeaponFiring
-  WeaponFireTypes(0)=EWFT_InstantHit
-  FireInterval(0)=0.1
-  Spread(0)=0
 
-  FiringStatesArray(1)=WeaponFiring
-  WeaponFireTypes(1)=EWFT_Projectile
-  WeaponProjectiles(1)=class'DualityGame.ParticleProjectile'
-  FireInterval(1)=0.01
-  Spread(1) = 0
+  FiringStatesArray(0)=WeaponFiring
+  WeaponFireTypes(0)=EWFT_Projectile
+  WeaponProjectiles(0)=class'DualityGame.ParticleProjectile'
+  FireInterval(0)=0.1
+  Spread(0) = 0
 
 	WeaponRange=1000
-
-   Begin Object Class=UDKSkeletalMeshComponent Name=BlueMesh
-    SkeletalMesh=SkeletalMesh'DualityL2.Meshes.test_PS'
-    HiddenGame=false
-    HiddenEditor=false
-  End object
-  Mesh=BlueMesh
-  Components.Add(BlueMesh)
 
   ProjectileSpawnOffset=20.0
 }

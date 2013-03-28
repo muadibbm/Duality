@@ -60,7 +60,7 @@ DefaultProperties
   Speed=700
 	MaxSpeed=2100
 	AccelRate=600
-  ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_BLUE'
+  ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_MEGA'
 
   Damage=25000000
   MomentumTransfer=10
