@@ -14,13 +14,13 @@ simulated function PostBeginPlay()
   Mesh.AttachComponentToSocket(purple, 'Purple');
   Mesh.AttachComponentToSocket(yellow, 'Yellow');
   Mesh.AttachComponentToSocket(red, 'Red');
+  AddDefaultInventory();
 }
-
-
 
 function AddDefaultInventory()
 {
-  InvManager.CreateInventory(class'DualityGame.ParticleWeapon');
+  InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
+  InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
 }
 
 DefaultProperties

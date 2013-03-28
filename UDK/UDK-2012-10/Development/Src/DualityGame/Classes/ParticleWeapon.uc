@@ -68,14 +68,15 @@ simulated function Projectile ProjectileFire()
     {
       AimDir = RealStartLoc;
     }
-
+  
+    `log("Spawn Projectile");
 		// Spawn projectile
 		SpawnedProjectile = Spawn(GetProjectileClass(),,, RealStartLoc);
 		if( SpawnedProjectile != None && !SpawnedProjectile.bDeleteMe )
 		{
 			SpawnedProjectile.Init( Vector(GetAdjustedAim( RealStartLoc )) );
 		}
-
+    
 		// Return it up the line
 		return SpawnedProjectile;
 	}
@@ -104,14 +105,5 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional Name 
 
 DefaultProperties
 {
-
-  FiringStatesArray(0)=WeaponFiring
-  WeaponFireTypes(0)=EWFT_Projectile
-  WeaponProjectiles(0)=class'DualityGame.ParticleProjectile'
-  FireInterval(0)=0.1
-  Spread(0) = 0
-
-	WeaponRange=1000
-
   ProjectileSpawnOffset=20.0
 }

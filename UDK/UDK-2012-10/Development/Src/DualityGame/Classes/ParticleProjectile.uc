@@ -33,19 +33,19 @@ simulated function SpawnFlightEffects()
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-    if ( Other != Instigator )
-    {
-      WorldInfo.MyDecalManager.SpawnDecal ( DecalMaterial'DualityL2.Decals.PS_BLUE', HitLocation, rotator(-HitNormal), 128, 128, 256, false, FRand() * 360, none );
-        Other.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType,, self);
-        Destroy();
-    }
+  if ( Other != Instigator )
+  {
+    // WorldInfo.MyDecalManager.SpawnDecal ( DecalMaterial'DualityL2.Decals.PS_BLUE', HitLocation, rotator(-HitNormal), 128, 128, 256, false, FRand() * 360, none );
+    Other.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType,, self);
+    Destroy();
+  }
 }
  
 simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
 {
-    //Velocity = MirrorVectorByNormal(Velocity,HitNormal); //That's the bounce
-    SetRotation(Rotator(Velocity));
-    TriggerEventClass(class'SeqEvent_HitWall', Wall);
+  //Velocity = MirrorVectorByNormal(Velocity,HitNormal); //That's the bounce
+  SetRotation(Rotator(Velocity));
+  TriggerEventClass(class'SeqEvent_HitWall', Wall);
 }
 
 DefaultProperties
@@ -60,7 +60,6 @@ DefaultProperties
   Speed=6000
 	MaxSpeed=10000
 	AccelRate=2000
-  ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_BLUE_BIG'
 
   Damage=25000000
   MomentumTransfer=10
