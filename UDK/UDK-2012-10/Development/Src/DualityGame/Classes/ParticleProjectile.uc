@@ -57,10 +57,10 @@ DefaultProperties
 
   bBlockedByInstigator=false;
   TossZ=0.0
-  Speed=700
+  Speed=1600
 	MaxSpeed=2100
 	AccelRate=600
-  ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_MEGA'
+  ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.PS_BLUE'
 
   Damage=25000000
   MomentumTransfer=10
