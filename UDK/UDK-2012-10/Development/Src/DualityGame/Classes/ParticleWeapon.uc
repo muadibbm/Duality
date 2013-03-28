@@ -122,7 +122,7 @@ simulated function Projectile ProjectileFire()
 // Set weapon to be single shot
 simulated function bool ShouldRefire()
 {
-	ClearPendingFire(1);
+	ClearPendingFire(0);
 	return false;
 }
 
