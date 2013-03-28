@@ -20,9 +20,10 @@ auto state Idle
     event SeePlayer (Pawn Seen)
     {
         super.SeePlayer(Seen);
-        target = Seen;
- 
-        GotoState('Follow');
+        if (seen.controller.isa('DualityAISuicideController') || seen.controller.isa('DualityAIShooterController')) {
+          target = Seen;
+          GotoState('Follow');
+        }
     }
 Begin:
 }
@@ -74,7 +75,7 @@ Begin:
     }
     if (VSize(Pawn.Location - target.Location) <= 128)
     {
-      GotoState('Kamikaze'); //Start shooting when close enough to the player.
+      GotoState('shoot'); //Start shooting when close enough to the player.
     }
     else
     {
@@ -82,17 +83,22 @@ Begin:
     }
 }
 
-state Kamikaze
+state shoot
 {
-
+ignores seePlayer;
 Begin:
-    Pawn.ZeroMovementVariables();
-    Sleep(1); //Give the pawn the time to stop.
-    target.TakeDamage(400, self, vect(0,0,0), vect(0,0,0), None);
-    pawn.Died(self, None, vect(0,0,0));
- //   SpawnExplosionParticleSystem(DualityAIPawn(pawn).deathAnimation);
-    GotoState('Idle');
+    pawn.zeromovementvariables();
+    sleep(1);
+    pawn.startfire(0);
+    pawn.stopfire(0);
+    target.TakeDamage(4, self, vect(0,0,0), vect(0,0,0), None);
+    if (vsize( Pawn.location - target.location) > 800 ) 
+    {
+      GotoState('Idle');
+    }
+    goto 'Begin';
 }
+
 
 DefaultProperties
 {

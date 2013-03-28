@@ -12,6 +12,10 @@ DefaultProperties
   HealthMax=1000;
   	bCanPickupInventory=true;	
 	
+  // Player initial speed
+  GroundSpeed=500
+  bCanPickupInventory=true
+
   // Define custom inventory manager class
   InventoryManagerClass=class'DualityGame.DualityInventoryManager'
 	
