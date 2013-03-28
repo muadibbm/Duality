@@ -27,35 +27,35 @@ DefaultProperties
 {
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0
-        Template=ParticleSystem'Duality.ParticleSystem.PS_BLUE'
+        Template=ParticleSystem'Duality.ParticleSystem.PS_BLUE_SMALL'
         bAutoActivate=true
   End Object
   blue=ParticleSystemComponent0
   Components.Add(ParticleSystemComponent0)
     // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent1
-        Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN'
+        Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN_SMALL'
         bAutoActivate=true
   End Object
   green=ParticleSystemComponent1
   Components.Add(ParticleSystemComponent1)
     // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent2
-        Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE'
+        Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE_SMALL'
         bAutoActivate=true
   End Object
   purple=ParticleSystemComponent2
   Components.Add(ParticleSystemComponent2)
     // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent3
-        Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW'
+        Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW_SMALL'
         bAutoActivate=true
   End Object
   yellow=ParticleSystemComponent3
   Components.Add(ParticleSystemComponent3)
     // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent4
-        Template=ParticleSystem'Duality.ParticleSystem.PS_RED'
+        Template=ParticleSystem'Duality.ParticleSystem.PS_RED_SMALL'
         bAutoActivate=true
   End Object
   red=ParticleSystemComponent4
