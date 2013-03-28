@@ -1,5 +1,23 @@
 class DualityPlayerPawn extends DualityPawn;
 
+var ParticleSystemComponent blue;
+var ParticleSystemComponent green;
+var ParticleSystemComponent purple;
+var ParticleSystemComponent yellow;
+var ParticleSystemComponent red;
+
+simulated function PostBeginPlay()
+{
+  super.PostBeginPlay();
+  Mesh.AttachComponentToSocket(blue, 'Blue');
+  Mesh.AttachComponentToSocket(green, 'Green');
+  Mesh.AttachComponentToSocket(purple, 'Purple');
+  Mesh.AttachComponentToSocket(yellow, 'Yellow');
+  Mesh.AttachComponentToSocket(red, 'Red');
+}
+
+
+
 function AddDefaultInventory()
 {
   InvManager.CreateInventory(class'DualityGame.ParticleWeapon');
@@ -7,6 +25,42 @@ function AddDefaultInventory()
 
 DefaultProperties
 {
+  // Particle system component to attach to player
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0
+        Template=ParticleSystem'Duality.ParticleSystem.PS_BLUE'
+        bAutoActivate=true
+  End Object
+  blue=ParticleSystemComponent0
+  Components.Add(ParticleSystemComponent0)
+    // Particle system component to attach to player
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent1
+        Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN'
+        bAutoActivate=true
+  End Object
+  green=ParticleSystemComponent1
+  Components.Add(ParticleSystemComponent1)
+    // Particle system component to attach to player
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent2
+        Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE'
+        bAutoActivate=true
+  End Object
+  purple=ParticleSystemComponent2
+  Components.Add(ParticleSystemComponent2)
+    // Particle system component to attach to player
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent3
+        Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW'
+        bAutoActivate=true
+  End Object
+  yellow=ParticleSystemComponent3
+  Components.Add(ParticleSystemComponent3)
+    // Particle system component to attach to player
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent4
+        Template=ParticleSystem'Duality.ParticleSystem.PS_RED'
+        bAutoActivate=true
+  End Object
+  red=ParticleSystemComponent4
+  Components.Add(ParticleSystemComponent4)
+
   // Player's health/mass
   Health=1000;
   HealthMax=1000;

@@ -21,7 +21,7 @@ function Init(vector Direction)
 simulated function SpawnFlightEffects()
 {
   if (ProjFlightTemplate != None)
-  {
+  { 
     ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplate);
     ProjEffects.SetAbsolute(false, false, false);
     ProjEffects.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
