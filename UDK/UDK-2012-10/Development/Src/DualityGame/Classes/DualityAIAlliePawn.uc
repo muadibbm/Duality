@@ -24,7 +24,7 @@ DefaultProperties
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Ally'
-        AnimSets(0)=AnimSet'Duality.Animations.ALLY_ATTACK'
+        AnimSets(0)=AnimSet'Duality.Animations.ALLY_ATTACKING'
  	 AnimSets(1)=AnimSet'Duality.Animations.ALLY_IDLE'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ALLY'
         deathAnimation='P_FX_VehicleDeathExplosion';

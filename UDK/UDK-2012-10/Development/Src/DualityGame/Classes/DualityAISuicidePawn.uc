@@ -31,9 +31,9 @@ DefaultProperties
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
-        AnimSets(0)=AnimSet'Duality.Animations.SWARM_ATTACK'
-	AnimSets(1)=AnimSet'Duality.Animations.SWARM_ATTACK'
-        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_SWARM'
+        AnimSets(0)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
+	AnimSets(1)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
+        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ISOTOPE'
         deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
         HiddenEditor=FALSE

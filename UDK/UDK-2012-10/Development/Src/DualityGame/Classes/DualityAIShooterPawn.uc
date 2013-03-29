@@ -30,7 +30,7 @@ DefaultProperties
         AnimSets(0)=AnimSet'Duality.Animations.MOLE_WALKING'
      	AnimSets(1)=AnimSet'Duality.Animations.MOLE_IDLE'
      	AnimSets(2)=AnimSet'Duality.Animations.MOLE_DYING'
-    	 AnimSets(3)=AnimSet'Duality.Animations.MOLE_JUMP'
+    	 AnimSets(3)=AnimSet'Duality.Animations.MOLE_JUMPING'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_MOLE'
         deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
