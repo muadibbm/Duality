@@ -1,7 +1,6 @@
 class DualityAIAlliePawn extends DualityPawn
 	placeable;
 
-var ParticleSystem deathAnimation;
 
 function AddDefaultInventory()
 {
@@ -27,7 +26,6 @@ DefaultProperties
         AnimSets(0)=AnimSet'Duality.Animations.ALLY_ATTACKING'
  	 AnimSets(1)=AnimSet'Duality.Animations.ALLY_IDLE'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ALLY'
-        deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object
@@ -35,8 +33,8 @@ DefaultProperties
     Mesh=SandboxPawnSkeletalMesh
  
     Components.Add(SandboxPawnSkeletalMesh)
-    ControllerClass=class'Duality.DualityAIAllieController'
-    InventoryManagerClass=class'Duality.DualityInventoryManager'
+    ControllerClass=class'DualityGame.DualityAIAllieController'
+    InventoryManagerClass=class'DualityGame.DualityInventoryManager'
  
     bJumpCapable=false
     bCanJump=false

@@ -1,4 +1,4 @@
-class DualityAIAllieController extends DualityAIController;
+class DualityAIEnemyController extends DualityAIController;
 
 event PostBeginPlay()
 {
@@ -17,18 +17,18 @@ auto state Idle
     event SeePlayer (Pawn Seen)
     {
         super.SeePlayer(Seen);
-        if (seen.controller.isA('DualityAIEnemyController')) {
-          target = Seen;
-          GotoState('Follow');
-        }
+        target = Seen;
+ 
+        GotoState('Follow');
     }
 Begin:
     waitForLanding();
     `log("Should be wandering around");
-    Pawn.ClientSetRotation(Rot(0,16384,0));
+    
 DoneWandering:
     sleep(0.5);
     goto 'Begin';
+
 }
  
 state Follow
@@ -42,7 +42,7 @@ state Follow
  
         // Create constraints
         class'NavMeshPath_Toward'.static.TowardGoal( NavigationHandle,target );
-        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,32 );
+        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,800 );
  
         // Find path
         return NavigationHandle.FindPath();
@@ -60,10 +60,11 @@ Begin:
     {
         NavigationHandle.SetFinalDestination(target.Location);
         FlushPersistentDebugLines();
+        //NavigationHandle.DrawPathCache(,TRUE);
  
         // move to the first node on the path
         if( NavigationHandle.GetNextMoveLocation( TempDest, Pawn.GetCollisionRadius()) )
-        {
+        { 
             MoveTo( TempDest, target );
         }
     }
@@ -72,14 +73,25 @@ Begin:
         //We can't follow, so get the hell out of this state, otherwise we'll enter an infinite loop.
         GotoState('Idle');
     }
-    if (VSize(Pawn.Location - target.Location) <= 800)
-    {
-      pawn.zeromovementvariables();
-      GotoState('shoot'); //Start shooting when close enough to the player.
-    }
-    else
-    {
+    if (pawn.isA('DualityAIShooterPawn')) {
+      if (VSize(Pawn.Location - target.Location) <= 800)
+      {
+        pawn.zeromovementvariables();
+        GotoState('shoot'); //Start shooting when close enough to the player.
+      }
+      else
+      {
       goto 'Begin';
+      }
+    } else {
+        if (VSize(Pawn.Location - target.Location) <= 128)
+      {
+        GotoState('Kamikaze'); //Start shooting when close enough to the player.
+      } 
+      else
+      {
+        goto 'Begin';
+      }
     }
 }
 
@@ -99,6 +111,17 @@ Begin:
     goto 'Begin';
 }
 
+state Kamikaze
+{
+
+Begin:
+    Pawn.ZeroMovementVariables();
+    Sleep(1); //Give the pawn the time to stop.
+    target.TakeDamage(400, self, vect(0,0,0), vect(0,0,0), None);
+    pawn.Died(self, None, vect(0,0,0));
+ //   SpawnExplosionParticleSystem(DualityAIPawn(pawn).deathAnimation);
+    GotoState('Idle');
+}
 
 DefaultProperties
 {

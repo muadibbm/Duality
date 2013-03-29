@@ -1,8 +1,6 @@
 class DualityAISuicidePawn extends DualityPawn
 	placeable;
 
-var ParticleSystem deathAnimation;
-
 function AddDefaultInventory()
 {
     //For those in the back who don't follow, SandboxPaintballGun is a custom weapon
@@ -34,7 +32,6 @@ DefaultProperties
         AnimSets(0)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
 	AnimSets(1)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ISOTOPE'
-        deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object
@@ -42,8 +39,8 @@ DefaultProperties
     Mesh=SandboxPawnSkeletalMesh
  
     Components.Add(SandboxPawnSkeletalMesh)
-    ControllerClass=class'Duality.DualityAISuicideController'
-    InventoryManagerClass=class'Duality.DualityInventoryManager'
+    ControllerClass=class'DualityGame.DualityAIEnemyController'
+    InventoryManagerClass=class'DualityGame.DualityInventoryManager'
  
     bJumpCapable=false
     bCanJump=false
