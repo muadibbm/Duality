@@ -40,7 +40,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     Destroy();
   }
 }
- 
+
 simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
 {
   //Velocity = MirrorVectorByNormal(Velocity,HitNormal); //That's the bounce
@@ -57,9 +57,9 @@ DefaultProperties
 
   bBlockedByInstigator=false;
   TossZ=0.0
-  Speed=6000
+  Speed=5000
 	MaxSpeed=10000
-	AccelRate=2000
+	AccelRate=4000
 
   Damage=25000000
   MomentumTransfer=10

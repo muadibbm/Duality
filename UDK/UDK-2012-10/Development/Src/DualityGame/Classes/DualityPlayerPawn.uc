@@ -21,6 +21,9 @@ function AddDefaultInventory()
 {
   InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
   InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
+  InvManager.CreateInventory(class'DualityGame.RedParticleWeapon');
+  InvManager.CreateInventory(class'DualityGame.PurpleParticleWeapon');
+  InvManager.CreateInventory(class'DualityGame.YellowParticleWeapon');
 }
 
 DefaultProperties
@@ -32,28 +35,32 @@ DefaultProperties
   End Object
   blue=ParticleSystemComponent0
   Components.Add(ParticleSystemComponent0)
-    // Particle system component to attach to player
+
+  // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent1
         Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN_SMALL'
         bAutoActivate=true
   End Object
   green=ParticleSystemComponent1
   Components.Add(ParticleSystemComponent1)
-    // Particle system component to attach to player
+
+  // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent2
         Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE_SMALL'
         bAutoActivate=true
   End Object
   purple=ParticleSystemComponent2
   Components.Add(ParticleSystemComponent2)
-    // Particle system component to attach to player
+
+  // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent3
         Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW_SMALL'
         bAutoActivate=true
   End Object
   yellow=ParticleSystemComponent3
   Components.Add(ParticleSystemComponent3)
-    // Particle system component to attach to player
+
+  // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent4
         Template=ParticleSystem'Duality.ParticleSystem.PS_RED_SMALL'
         bAutoActivate=true
@@ -61,10 +68,11 @@ DefaultProperties
   red=ParticleSystemComponent4
   Components.Add(ParticleSystemComponent4)
 
+
   // Player's health/mass
   Health=1000;
   HealthMax=1000;
-  	bCanPickupInventory=true;	
+  bCanPickupInventory=true;	
 	
   // Player initial speed
   GroundSpeed=500
@@ -73,7 +81,7 @@ DefaultProperties
   // Define custom inventory manager class
   InventoryManagerClass=class'DualityGame.DualityInventoryManager'
 	
-	// Light environment for model.
+ // Light environment for model.
   Begin Object Class=DynamicLightEnvironmentComponent Name=PawnLightEnvironment
 	  ModShadowFadeoutTime=0.25
     MinTimeBetweenFullUpdates=0.2
@@ -102,7 +110,6 @@ DefaultProperties
 	  AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_CATALYST'
 	  SkeletalMesh=SkeletalMesh'Duality.Meshes.catalyst'
   End Object
-
 
 
   // Set up collision cylinder for pawn

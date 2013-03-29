@@ -31,8 +31,9 @@ DefaultProperties
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
-        AnimSets(0)=AnimSet'Duality.Animations.MOLE_WALKING'
-        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_MOLE'
+        AnimSets(0)=AnimSet'Duality.Animations.SWARM_ATTACK'
+	AnimSets(1)=AnimSet'Duality.Animations.SWARM_ATTACK'
+        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_SWARM'
         deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE
         HiddenEditor=FALSE
@@ -47,6 +48,6 @@ DefaultProperties
     bJumpCapable=false
     bCanJump=false
  
-    GroundSpeed=300.0 
+    GroundSpeed=250.0 
 
 }

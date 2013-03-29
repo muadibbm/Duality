@@ -26,8 +26,11 @@ DefaultProperties
     End Object
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
-        SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
+        SkeletalMesh=SkeletalMesh'Duality.Meshes.Mole'
         AnimSets(0)=AnimSet'Duality.Animations.MOLE_WALKING'
+     	AnimSets(1)=AnimSet'Duality.Animations.MOLE_IDLE'
+     	AnimSets(2)=AnimSet'Duality.Animations.MOLE_DYING'
+    	 AnimSets(3)=AnimSet'Duality.Animations.MOLE_JUMP'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_MOLE'
         deathAnimation='P_FX_VehicleDeathExplosion';
         HiddenGame=FALSE

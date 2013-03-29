@@ -39,7 +39,7 @@ simulated function Projectile ProjectileFire()
 {
 	local vector RealStartLoc, StartTrace, EndTrace, AimDir, HitLocation, HitNormal;
 	local Projectile	SpawnedProjectile;
-  local Actor HitActor;
+ 	local Actor HitActor;
 
 	// tell remote clients that we fired, to trigger effects
 	IncrementFlashCount();
