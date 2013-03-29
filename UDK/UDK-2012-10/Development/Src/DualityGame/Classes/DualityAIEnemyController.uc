@@ -16,14 +16,14 @@ auto state Idle
 {
     event SeePlayer (Pawn Seen)
     {
-        super.SeePlayer(Seen);
+      super.SeePlayer(Seen);
+      if (seen.controller.isA('DualityPlayerController') || seen.controller.isA('DualityAIAllieController')) {
         target = Seen;
- 
         GotoState('Follow');
+      }
     }
 Begin:
     waitForLanding();
-    `log("Should be wandering around");
     
 DoneWandering:
     sleep(0.5);
