@@ -24,8 +24,7 @@ auto state Idle
     }
 Begin:
     waitForLanding();
-    `log("Should be wandering around");
-    Pawn.ClientSetRotation(Rot(0,16384,0));
+
 DoneWandering:
     sleep(0.5);
     goto 'Begin';
@@ -42,7 +41,7 @@ state Follow
  
         // Create constraints
         class'NavMeshPath_Toward'.static.TowardGoal( NavigationHandle,target );
-        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,32 );
+        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,800);
  
         // Find path
         return NavigationHandle.FindPath();
@@ -92,7 +91,7 @@ Begin:
     pawn.startfire(0);
     pawn.stopfire(0);
     target.TakeDamage(4, self, vect(0,0,0), vect(0,0,0), None);
-    if (vsize( Pawn.location - target.location) > 800 ) 
+    if (vsize( Pawn.location - target.location) > 800  || target.health <= 0) 
     {
       GotoState('Idle');
     }

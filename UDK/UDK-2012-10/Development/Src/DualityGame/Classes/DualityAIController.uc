@@ -1,4 +1,4 @@
 class DualityAIController extends UDKBot;
 
-var Actor target;
+var Pawn target;
 var() Vector TempDest;

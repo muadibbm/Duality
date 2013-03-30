@@ -13,11 +13,12 @@ event PostBeginPlay()
     AddDefaultInventory(); //GameInfo calls it only for players, so we have to do it ourselves for AI.
 }
 
-event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
+simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
-    super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
-    Health = FMax(Health-Damage,0);
-    WorldInfo.Game.Broadcast(self,Name$": Health:"@Health);
+  super.postInitAnimTree(skelComp);
+  if (skelComp == mesh) {
+    deathAnim = AnimNodePlayCustomAnim(Mesh.FindAnimNode('dying'));
+  }
 }
 
 
@@ -30,7 +31,7 @@ DefaultProperties
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
         AnimSets(0)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
-	AnimSets(1)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
+      	AnimSets(1)=AnimSet'Duality.Animations.ISOTOPE_DYING'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ISOTOPE'
         HiddenGame=FALSE
         HiddenEditor=FALSE

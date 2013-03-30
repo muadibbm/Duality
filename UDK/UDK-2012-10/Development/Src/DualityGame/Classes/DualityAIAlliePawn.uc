@@ -15,6 +15,11 @@ event PostBeginPlay()
     AddDefaultInventory(); //GameInfo calls it only for players, so we have to do it ourselves for AI.
 }
 
+simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
+{
+  super.postInitAnimTree(skelComp);
+}
+
 DefaultProperties
 {
     Begin Object Name=CollisionCylinder
@@ -24,7 +29,7 @@ DefaultProperties
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Ally'
         AnimSets(0)=AnimSet'Duality.Animations.ALLY_ATTACKING'
- 	 AnimSets(1)=AnimSet'Duality.Animations.ALLY_IDLE'
+ 	      AnimSets(1)=AnimSet'Duality.Animations.ALLY_IDLE'
         AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ALLY'
         HiddenGame=FALSE
         HiddenEditor=FALSE

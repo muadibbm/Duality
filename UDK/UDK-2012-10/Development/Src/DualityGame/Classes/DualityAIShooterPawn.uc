@@ -10,13 +10,14 @@ function AddDefaultInventory()
 
 }
 
-
-
 event PostBeginPlay()
 {
     super.PostBeginPlay();
     AddDefaultInventory(); //GameInfo calls it only for players, so we have to do it ourselves for AI.
 }
+
+
+
 
 DefaultProperties
 {
@@ -34,7 +35,6 @@ DefaultProperties
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object
- 
     Mesh=SandboxPawnSkeletalMesh
  
     Components.Add(SandboxPawnSkeletalMesh)

@@ -42,7 +42,11 @@ state Follow
  
         // Create constraints
         class'NavMeshPath_Toward'.static.TowardGoal( NavigationHandle,target );
+        if (pawn.isA('DualityAIShooterPawn')) {
         class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,800 );
+        } else {
+        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,128 );
+        }
  
         // Find path
         return NavigationHandle.FindPath();
@@ -104,7 +108,7 @@ Begin:
     pawn.startfire(0);
     pawn.stopfire(0);
     target.TakeDamage(4, self, vect(0,0,0), vect(0,0,0), None);
-    if (vsize( Pawn.location - target.location) > 800 ) 
+    if (vsize( Pawn.location - target.location) > 800 || target.health <= 0) 
     {
       GotoState('Idle');
     }
@@ -118,7 +122,7 @@ Begin:
     Pawn.ZeroMovementVariables();
     Sleep(1); //Give the pawn the time to stop.
     target.TakeDamage(400, self, vect(0,0,0), vect(0,0,0), None);
-    pawn.Died(self, None, vect(0,0,0));
+    pawn.takedamage(pawn.health, self, vect(0,0,0), vect(0,0,0), None);
  //   SpawnExplosionParticleSystem(DualityAIPawn(pawn).deathAnimation);
     GotoState('Idle');
 }
