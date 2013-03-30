@@ -18,17 +18,22 @@ auto state Idle
     {
       super.SeePlayer(Seen);
       if (seen.controller.isA('DualityPlayerController') || seen.controller.isA('DualityAIAllieController')) {
+        Pawn.LockDesiredRotation(false);
         target = Seen;
         GotoState('Follow');
       }
     }
 Begin:
     waitForLanding();
-    
 DoneWandering:
-    sleep(0.5);
+    if (pawn.desiredRotation == Rot(0,0,0)) {
+      Pawn.setdesiredRotation(Rot(0,32768,0),true,false,,);
+    } else {
+      Pawn.setdesiredRotation(Rot(0,0,0),true,false,,);
+    }
+    sleep(2.0 + rand(1.0));
+    Pawn.LockDesiredRotation(false);
     goto 'Begin';
-
 }
  
 state Follow
@@ -78,7 +83,7 @@ Begin:
         GotoState('Idle');
     }
     if (pawn.isA('DualityAIShooterPawn')) {
-      if (VSize(Pawn.Location - target.Location) <= 800)
+      if (VSize(Pawn.Location - target.Location) <= 800  || target.health <= 0)
       {
         pawn.zeromovementvariables();
         GotoState('shoot'); //Start shooting when close enough to the player.
@@ -88,7 +93,7 @@ Begin:
       goto 'Begin';
       }
     } else {
-        if (VSize(Pawn.Location - target.Location) <= 128)
+        if (VSize(Pawn.Location - target.Location) <= 128  || target.health <= 0)
       {
         GotoState('Kamikaze'); //Start shooting when close enough to the player.
       } 

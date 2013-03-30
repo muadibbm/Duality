@@ -10,6 +10,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
 {
     super.Possess(inPawn, bVehicleTransition);
     Pawn.SetMovementPhysics();
+    pawn.LockDesiredRotation(False);
 }
 
 auto state Idle
@@ -18,15 +19,21 @@ auto state Idle
     {
         super.SeePlayer(Seen);
         if (seen.controller.isA('DualityAIEnemyController')) {
+          Pawn.LockDesiredRotation(false);
           target = Seen;
           GotoState('Follow');
         }
     }
 Begin:
     waitForLanding();
-
 DoneWandering:
-    sleep(0.5);
+    if (pawn.desiredRotation == Rot(0,0,0)) {
+      Pawn.setdesiredRotation(Rot(0,32768,0),true,false,,);
+    } else {
+      Pawn.setdesiredRotation(Rot(0,0,0),true,false,,);
+    }
+    sleep(2.0 + rand(1.0));
+    Pawn.LockDesiredRotation(false);
     goto 'Begin';
 }
  
