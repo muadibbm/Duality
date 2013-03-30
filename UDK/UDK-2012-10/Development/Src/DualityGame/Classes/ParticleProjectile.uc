@@ -132,20 +132,16 @@ DefaultProperties
   End Object
 
   Begin Object Class=AudioComponent Name=Music01Comp
-    SoundCue=SoundCue'A_Weapon_Link.Cue.A_Weapon_Link_FireCue'           
+    SoundCue=SoundCue'Duality_Audio.SoundCue.CatShooting'           
   End Object
   ShootMusic=Music01Comp
-  Begin Object Class=AudioComponent Name=Music02Comp
-    SoundCue=SoundCue'A_Weapon_Link.Cue.A_Weapon_Link_ImpactCue'           
-  End Object
-  ExplosionMusic=Music02Comp
 
   bBlockedByInstigator=false;
   TossZ=0.0
   Speed=5000
   MaxSpeed=10000
   AccelRate=4000
-  DamageRadius=100.0
+  DamageRadius=200.0
 
   bShuttingDown=false
 
