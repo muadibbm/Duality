@@ -50,7 +50,7 @@ defaultproperties
 	BobOffset=5.0
 
 	Begin Object Class=StaticMeshComponent Name=HealthPickUpMesh
-    StaticMesh=StaticMesh'Duality.Meshes.Neutron'
+    StaticMesh=StaticMesh'Duality.Neutron'
 	  CastShadow=FALSE
 		bCastDynamicShadow=FALSE
 		bAcceptsLights=TRUE
