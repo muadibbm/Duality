@@ -4,8 +4,6 @@ class DualityAIAlliePawn extends DualityPawn
 
 function AddDefaultInventory()
 {
-    //For those in the back who don't follow, SandboxPaintballGun is a custom weapon
-    //I've made in an earlier article, don't look for it in your UDK build.
     InvManager.CreateInventory(class'DualityGame.ParticleWeapon');
 }
 
@@ -28,9 +26,9 @@ DefaultProperties
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Ally'
-        AnimSets(0)=AnimSet'Duality.Animations.ALLY_ATTACKING'
- 	      AnimSets(1)=AnimSet'Duality.Animations.ALLY_IDLE'
-        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ALLY'
+        AnimSets(0)=AnimSet'Duality_Animations.AnimSets.ALLY_ATTACKING'
+ 	      AnimSets(1)=AnimSet'Duality_Animations.AnimSets.ALLY_IDLE'
+        AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_ALLY'
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object

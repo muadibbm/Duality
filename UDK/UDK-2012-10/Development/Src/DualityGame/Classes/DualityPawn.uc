@@ -17,7 +17,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
   if (health <= 0) {
 
     if (deathAnim != none) {
-      WorldInfo.Game.Broadcast(self,"DEATH anim is not none");
       deathAnim.PlayCustomAnim('DIE',1.00f,,-1.f);
       SetPhysics(PHYS_Falling);
     }
@@ -37,7 +36,6 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 defaultproperties
 {
   bCanPickUpInventory=false
-
 
 }
 

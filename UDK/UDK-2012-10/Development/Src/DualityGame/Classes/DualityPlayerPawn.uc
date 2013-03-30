@@ -5,7 +5,7 @@ var ParticleSystemComponent green;
 var ParticleSystemComponent purple;
 var ParticleSystemComponent yellow;
 var ParticleSystemComponent red;
-
+var bool bParticle1TimerOn;
 
 simulated function PostBeginPlay()
 {
@@ -27,10 +27,36 @@ function AddDefaultInventory()
 {
   InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
   InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
-  InvManager.CreateInventory(class'DualityGame.RedParticleWeapon');
-  InvManager.CreateInventory(class'DualityGame.PurpleParticleWeapon');
-  InvManager.CreateInventory(class'DualityGame.YellowParticleWeapon');
+  //InvManager.CreateInventory(class'DualityGame.RedParticleWeapon');
+  //InvManager.CreateInventory(class'DualityGame.PurpleParticleWeapon');
+  //InvManager.CreateInventory(class'DualityGame.YellowParticleWeapon');
 }
+
+
+function HandleBlueParticlePickup() {
+  Groundspeed = GroundSpeed/2.00;
+  addBlueParticle();
+
+  if (!bParticle1TimerON) {
+    SetTimer(10.0,false, 'ParticlePickupTimer');
+    bParticle1TimerOn=true;
+  }
+}
+
+
+function ParticlePickupTimer () {
+  GroundSpeed=GroundSpeed*2.00;
+  bParticle1TimerOn=true;
+}
+
+
+function addBlueParticle()
+{
+  InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
+  Mesh.AttachComponentToSocket(blue, 'Blue');
+}
+
+
 
 DefaultProperties
 {
@@ -40,7 +66,7 @@ DefaultProperties
         bAutoActivate=true
   End Object
   blue=ParticleSystemComponent0
-  Components.Add(ParticleSystemComponent0)
+  Components.Add(ParticleSystemComponent0);
 
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent1
@@ -48,7 +74,7 @@ DefaultProperties
         bAutoActivate=true
   End Object
   green=ParticleSystemComponent1
-  Components.Add(ParticleSystemComponent1)
+ Components.Add(ParticleSystemComponent1);
 
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent2
@@ -56,7 +82,7 @@ DefaultProperties
         bAutoActivate=true
   End Object
   purple=ParticleSystemComponent2
-  Components.Add(ParticleSystemComponent2)
+ Components.Add(ParticleSystemComponent2);
 
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent3
@@ -64,7 +90,7 @@ DefaultProperties
         bAutoActivate=true
   End Object
   yellow=ParticleSystemComponent3
-  Components.Add(ParticleSystemComponent3)
+ Components.Add(ParticleSystemComponent3);
 
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent4
@@ -72,7 +98,7 @@ DefaultProperties
         bAutoActivate=true
   End Object
   red=ParticleSystemComponent4
-  Components.Add(ParticleSystemComponent4)
+  Components.Add(ParticleSystemComponent4);
 
 
   // Player's health/mass
@@ -82,7 +108,6 @@ DefaultProperties
 	
   // Player initial speed
   GroundSpeed=500
-  bCanPickupInventory=true
 
   // Define custom inventory manager class
   InventoryManagerClass=class'DualityGame.DualityInventoryManager'
@@ -109,12 +134,12 @@ DefaultProperties
 	  BlockZeroExtent=true;
 	  // NOTE: Mesh properties to change to add new model or animation set
 	  PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
-	  AnimSets(0)=AnimSet'Duality.Animations.CAT_IDLE'
-  	AnimSets(1)=AnimSet'Duality.Animations.CAT_FORWARD'
-	  AnimSets(2)=AnimSet'Duality.Animations.CAT_BACKWARD'
-  	AnimSets(3)=AnimSet'Duality.Animations.CAT_SHOOTING'
-    AnimSets(4)=AnimSet'Duality.Animations.CAT_DYING'
-	  AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_CATALYST'
+	  AnimSets(0)=AnimSet'Duality_Animations.AnimSets.CAT_IDLE'
+  	AnimSets(1)=AnimSet'Duality_Animations.AnimSets.CAT_FORWARD'
+	  AnimSets(2)=AnimSet'Duality_Animations.AnimSets.CAT_BACKWARD'
+  	AnimSets(3)=AnimSet'Duality_Animations.AnimSets.CAT_SHOOTING'
+    AnimSets(4)=AnimSet'Duality_Animations.AnimSets.CAT_DYING'
+	  AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_CATALYST'
 	  SkeletalMesh=SkeletalMesh'Duality.Meshes.catalyst'
   End Object
 

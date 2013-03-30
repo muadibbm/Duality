@@ -3,8 +3,7 @@ class DualityAISuicidePawn extends DualityPawn
 
 function AddDefaultInventory()
 {
-    //For those in the back who don't follow, SandboxPaintballGun is a custom weapon
-    //I've made in an earlier article, don't look for it in your UDK build.
+  
 }
 
 event PostBeginPlay()
@@ -30,9 +29,9 @@ DefaultProperties
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
-        AnimSets(0)=AnimSet'Duality.Animations.ISOTOPE_ATTACKING'
-      	AnimSets(1)=AnimSet'Duality.Animations.ISOTOPE_DYING'
-        AnimTreeTemplate=AnimTree'Duality.Animations.ANIM_ISOTOPE'
+        AnimSets(0)=AnimSet'Duality_Animations.AnimSets.ISOTOPE_ATTACKING'
+      	AnimSets(1)=AnimSet'Duality_Animations.AnimSets.ISOTOPE_DYING'
+        AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_ISOTOPE'
         HiddenGame=FALSE
         HiddenEditor=FALSE
     End Object
