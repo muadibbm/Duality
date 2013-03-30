@@ -1,4 +1,4 @@
-class DualityPickupFactoryParticle_BLUE extends DualityPickupFactory
+class DualityPickupFactoryParticle_Blue extends DualityPickupFactory
 placeable;
 
 
