@@ -7,7 +7,6 @@ var AudioComponent ShootMusic, ExplosionMusic;
 var SoundCue ShootSound; 
 var SoundCue ExplosionSound; 
 var bool bSuppressExplosionFX;
-var bool bShuttingDown;
 var bool bSuppressSound;
 var float TossZ;
 
