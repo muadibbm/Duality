@@ -43,21 +43,7 @@ function bool HandleBlueParticlePickup() {
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Blue');
-    weaponList.length = 0;
-    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
-    if (weaponList.length == 1) {
-      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
-      return true;
-    } else if (weaponList.length == 2) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
-      return true;
-    } else if (weaponList.length == 3) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Green');
-    } else if (weaponList.Length == 4) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Blue');	
-    } else if (weaponList.Length == 5) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Purple');	
-    }
+    return AttachNewParticle(WeaponList);
   }
   return false;
 }
@@ -67,21 +53,7 @@ function bool HandleGreenParticlePickup() {
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Green');
-    weaponList.length = 0;
-    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
-    if (weaponList.length == 1) {
-      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
-      return true;
-    } else if (weaponList.length == 2) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
-      return true;
-    } else if (weaponList.length == 3) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Green');
-    } else if (weaponList.Length == 4) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Blue');	
-    } else if (weaponList.Length == 5) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Purple');	
-    }
+    return AttachNewParticle(WeaponList);
   }
   return false;
 }
@@ -91,21 +63,7 @@ function bool HandleRedParticlePickup() {
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Red');
-    weaponList.length = 0;
-    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
-    if (weaponList.length == 1) {
-      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
-      return true;
-    } else if (weaponList.length == 2) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
-      return true;
-    } else if (weaponList.length == 3) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Green');
-    } else if (weaponList.Length == 4) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Blue');	
-    } else if (weaponList.Length == 5) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Purple');	
-    }
+    return AttachNewParticle(WeaponList);
   }
   return false;
 }
@@ -115,21 +73,8 @@ function bool HandleYellowParticlePickup() {
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Yellow');
-    weaponList.length = 0;
-    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
-    if (weaponList.length == 1) {
-      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
-      return true;
-    } else if (weaponList.length == 2) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
-      return true;
-    } else if (weaponList.length == 3) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Green');
-    } else if (weaponList.Length == 4) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Blue');	
-    } else if (weaponList.Length == 5) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Purple');	
-    }
+
+    return AttachNewParticle(WeaponList);
   }
   return false;
 }
@@ -139,36 +84,52 @@ function bool HandlePurpleParticlePickup() {
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Purple');
-    weaponList.length = 0;
-    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
-    if (weaponList.length == 1) {
-      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
-      return true;
-    } else if (weaponList.length == 2) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
-      return true;
-    } else if (weaponList.length == 3) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Green');
-    } else if (weaponList.Length == 4) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Blue');	
-    } else if (weaponList.Length == 5) {
-      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Purple');	
-    }
+   
+   return AttachNewParticle(WeaponList);
   }
   return false;
 }
 
+function bool AttachNewParticle(array<DualityWeapon> WeaponList){
+    weaponList.length = 0;
+    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+    if (weaponList.length == 1) {
+      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Weapon1');
+          return true;
+    } else if (weaponList.length == 2) {
+      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Weapon2');
+         return true;
+    } else if (weaponList.length == 3) {
+      Mesh.AttachComponentToSocket(weaponList[2].Particle, 'Weapon3');
+          return true;
+    } else if (weaponList.Length == 4) {
+      Mesh.AttachComponentToSocket(weaponList[3].Particle, 'Weapon4');  
+          return true;
+    } else if (weaponList.Length == 5) {
+      Mesh.AttachComponentToSocket(weaponList[4].Particle, 'Weapon5');  
+          return true;
+    }
+
+}
 
 function ParticlePickupTimer () {
  // GroundSpeed=GroundSpeed*2.00;
  // bParticle1TimerOn=true;
 }
 
+function bool removeParticle(){
+  local array<DualityWeapon> WeaponList;
+  DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+  if (weaponList.length > 0) {
+    InvManager.RemoveFromInventory(WeaponList[0]);
+    return true;
+  }
+  return false;
+}
+
 
 DefaultProperties
 {
-
-
   // Particle system component to attach to player
   Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_GREEN
         Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN_SMALL'
@@ -233,7 +194,7 @@ DefaultProperties
 	  BlockRigidBody=true;
 	  CollideActors=true;
 	  BlockZeroExtent=true;
-	  // NOTE: Mesh properties to change to add new model or animation set
+	
 	  PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
 	  AnimSets(0)=AnimSet'Duality_Animations.AnimSets.CAT_IDLE'
   	AnimSets(1)=AnimSet'Duality_Animations.AnimSets.CAT_FORWARD'
