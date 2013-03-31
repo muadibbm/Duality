@@ -101,6 +101,7 @@ simulated function MyOnParticleSystemFinished(ParticleSystemComponent PSC)
     ProjEffects = None;
   }
 }
+
 simulated function Shutdown()
 {
   local vector HitLocation, HitNormal;
@@ -136,7 +137,7 @@ DefaultProperties
   ShootMusic=Music01Comp
 
   Begin Object Class=AudioComponent Name=Music02Comp
-    SoundCue=SoundCue'A_Weapon_Link.Cue.A_Weapon_Link_ImpactCue'           
+    SoundCue=SoundCue'Duality_Audio.SoundCue.ParticleExplosion'           
   End Object
   ExplosionMusic=Music02Comp
 

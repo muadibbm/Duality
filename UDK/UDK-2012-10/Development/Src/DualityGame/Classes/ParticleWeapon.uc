@@ -3,14 +3,13 @@ class ParticleWeapon extends UDKWeapon;
 var float ProjectileSpawnOffset;
 var ParticleSystemComponent Particle;
 
-
 // Set position of mesh
 simulated event SetPosition(UDKPawn Holder)
 {
   local SkeletalMeshComponent compo;
   local SkeletalMeshSocket socket;
   local Vector FinalLocation;
- 
+
   compo = Holder.Mesh;
  
   if( compo != none )
@@ -18,6 +17,8 @@ simulated event SetPosition(UDKPawn Holder)
     socket = compo.GetSocketByName('BRAIN');
     if( socket != none )
     {
+     
+      ItemRemovedFromInvManager();
       FinalLocation = compo.GetBoneLocation(socket.BoneName);
     }
   } 
@@ -53,7 +54,7 @@ simulated function Projectile ProjectileFire()
   {
     SpawnedProjectile.Init( Vector(GetAdjustedAim( RealStartLoc )) );
   }
-    
+
   // Return it up the line
   return SpawnedProjectile;
 }

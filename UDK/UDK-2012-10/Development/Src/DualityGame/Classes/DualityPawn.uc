@@ -6,7 +6,6 @@ var AnimNodePlayCustomAnim deathAnim;
 event PostBeginPlay()
 {
   super.postBeginPlay();
-
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -21,7 +20,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
       SetPhysics(PHYS_Falling);
     }
   }
-
 }
 
 
