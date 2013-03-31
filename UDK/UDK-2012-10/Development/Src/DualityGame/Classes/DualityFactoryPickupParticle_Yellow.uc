@@ -1,4 +1,4 @@
-class DualityPickupFactoryParticle_Blue extends DualityPickupFactory
+class DualityPickupFactoryParticle_Yellow extends DualityPickupFactory
 placeable;
 
 
@@ -19,9 +19,11 @@ auto state Pickup {
 
 function GiveTo(Pawn P)
 {
+  local DualityPlayerController catPC;
+  catPC= DualityPlayerController(P.controller);
   `log("GiveTo");
   if (P.controller.isA('DualityPlayerController')) {
-    if (DualityPlayerPawn(P).handleBlueParticlePickup()) {
+    if (DualityPlayerPawn(P).handleYellowParticlePickup()) {
 	  pickedUpBy(P);
       `log("Not None");
       SetHidden(true);
@@ -50,8 +52,8 @@ defaultproperties
 
  
 
-	Begin Object Class=StaticMeshComponent Name=BluePickUpMesh
-    	StaticMesh=StaticMesh'Duality.Meshes.PS_BLUE'
+	Begin Object Class=StaticMeshComponent Name=YellowPickUpMesh
+    	StaticMesh=StaticMesh'Duality.Meshes.PS_YELLOW'
 	 	CastShadow=FALSE
 		bCastDynamicShadow=FALSE
 		bAcceptsLights=TRUE
@@ -69,8 +71,8 @@ defaultproperties
 	End Object
 	
 	
-	PickupMesh=BluePickUpMesh
-	Components.Add(BluePickUpMesh)
+	PickupMesh=YellowPickUpMesh
+	Components.Add(YellowPickUpMesh)
 
 
 }
