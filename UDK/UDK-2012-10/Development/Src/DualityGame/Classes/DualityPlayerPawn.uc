@@ -42,7 +42,7 @@ function bool HandleBlueParticlePickup() {
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.DualityWeaponBlue');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon_Blue');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
@@ -66,7 +66,7 @@ function bool HandleGreenParticlePickup() {
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.DualityWeaponGreen');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon_Green');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
@@ -90,7 +90,7 @@ function bool HandleRedParticlePickup() {
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.DualityWeaponRed');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon_Red');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
@@ -114,7 +114,7 @@ function bool HandleYellowParticlePickup() {
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.DualityWeaponYellow');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon_Yellow');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
@@ -138,7 +138,7 @@ function bool HandlePurpleParticlePickup() {
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.DualityWeaponPurple');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon_Purple');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {

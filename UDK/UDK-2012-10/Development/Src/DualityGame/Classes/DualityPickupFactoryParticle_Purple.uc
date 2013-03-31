@@ -19,8 +19,6 @@ auto state Pickup {
 
 function GiveTo(Pawn P)
 {
-  local DualityPlayerController catPC;
-  catPC= DualityPlayerController(P.controller);
   `log("GiveTo");
   if (P.controller.isA('DualityPlayerController')) {
     if (DualityPlayerPawn(P).handlePurpleParticlePickup()) {
@@ -50,7 +48,6 @@ defaultproperties
 	BobSpeed=1.0
 	BobOffset=5.0
 
- 
 
 	Begin Object Class=StaticMeshComponent Name=PurplePickUpMesh
     	StaticMesh=StaticMesh'Duality.Meshes.PS_PURPLE'
@@ -73,6 +70,4 @@ defaultproperties
 	
 	PickupMesh=PurplePickUpMesh
 	Components.Add(PurplePickUpMesh)
-
-
 }

@@ -19,9 +19,7 @@ auto state Pickup {
 
 function GiveTo(Pawn P)
 {
-  local DualityPlayerController catPC;
-  catPC= DualityPlayerController(P.controller);
-  `log("GiveTo");
+ `log("GiveTo");
   if (P.controller.isA('DualityPlayerController')) {
     if (DualityPlayerPawn(P).handleRedParticlePickup()) {
 	  pickedUpBy(P);
@@ -32,7 +30,6 @@ function GiveTo(Pawn P)
   	`log("Should never happen");
   }
 }
-
 
 
 defaultproperties
@@ -73,6 +70,4 @@ defaultproperties
 	
 	PickupMesh=RedPickUpMesh
 	Components.Add(RedPickUpMesh)
-
-
 }

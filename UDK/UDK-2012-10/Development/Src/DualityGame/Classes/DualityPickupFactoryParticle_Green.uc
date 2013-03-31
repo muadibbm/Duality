@@ -19,8 +19,6 @@ auto state Pickup {
 
 function GiveTo(Pawn P)
 {
-  local DualityPlayerController catPC;
-  catPC= DualityPlayerController(P.controller);
   `log("GiveTo");
   if (P.controller.isA('DualityPlayerController')) {
     if (DualityPlayerPawn(P).handleGreenParticlePickup()) {
