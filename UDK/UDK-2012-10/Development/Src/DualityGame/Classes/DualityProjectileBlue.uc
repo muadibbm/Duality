@@ -1,4 +1,4 @@
-class BlueParticleProjectile extends ParticleProjectile;
+class DualityProjectileBlue extends DualityProjectile;
 
 DefaultProperties
 {

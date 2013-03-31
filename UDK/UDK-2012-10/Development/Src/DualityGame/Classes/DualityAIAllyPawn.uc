@@ -1,10 +1,10 @@
-class DualityAIAlliePawn extends DualityPawn
+class DualityAIAllyPawn extends DualityPawn
 	placeable;
 
 
 function AddDefaultInventory()
 {
-    InvManager.CreateInventory(class'DualityGame.ParticleWeapon');
+    InvManager.CreateInventory(class'DualityGame.DualityWeapon');
 }
 
 event PostBeginPlay()
@@ -36,7 +36,7 @@ DefaultProperties
     Mesh=SandboxPawnSkeletalMesh
  
     Components.Add(SandboxPawnSkeletalMesh)
-    ControllerClass=class'DualityGame.DualityAIAllieController'
+    ControllerClass=class'DualityGame.DualityAIAllyController'
     InventoryManagerClass=class'DualityGame.DualityInventoryManager'
  
     bJumpCapable=false

@@ -1,10 +1,10 @@
-class BlueParticleWeapon extends ParticleWeapon;
+class DualityWeaponBlue extends DualityWeapon;
 
 DefaultProperties
 {
   FiringStatesArray(0)=WeaponFiring
   WeaponFireTypes(0)=EWFT_Projectile
-  WeaponProjectiles(0)=class'DualityGame.BlueParticleProjectile'
+  WeaponProjectiles(0)=class'DualityGame.DualityProjectileBlue'
   FireInterval(0)=0.1
   Spread(0) = 0
 
@@ -15,7 +15,6 @@ DefaultProperties
   End Object
   Particle=ParticleSystemComponent_BLUE
   Components.Add(ParticleSystemComponent_BLUE);
- // Mesh.HideBoneByName('Blue',PBO_None );
 
 	WeaponRange=1000
 }

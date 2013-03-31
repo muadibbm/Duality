@@ -1,4 +1,4 @@
-class DualityAIAllieController extends DualityAIController;
+class DualityAIAllyController extends DualityAIController;
 
 event PostBeginPlay()
 {

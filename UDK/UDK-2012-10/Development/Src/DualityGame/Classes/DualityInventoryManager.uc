@@ -36,14 +36,14 @@ class DualityInventoryManager extends InventoryManager;
 	}
 	
 	// Get list of all weapons in the inventory
-	simulated function GetWeaponList(out array<ParticleWeapon> WeaponList)
+	simulated function GetWeaponList(out array<DualityWeapon> WeaponList)
 	{
-	  local ParticleWeapon Weap;
+	  local DualityWeapon Weap;
 	  local int i;
 	
 	  i = 0;
 	  // Create of list of weapons
-	  ForEach InventoryActors( class'ParticleWeapon', Weap )
+	  ForEach InventoryActors( class'DualityWeapon', Weap )
 	  {
 	    if ( WeaponList.Length <= i )
 	    {
@@ -57,7 +57,7 @@ class DualityInventoryManager extends InventoryManager;
 	// Switch to weapon at given position
 	simulated function SwitchWeapon(byte Position)
 	{
-	  local array<ParticleWeapon> WeaponList;
+	  local array<DualityWeapon> WeaponList;
 	
 	  // Get the list of weapons
 	  GetWeaponList(WeaponList);

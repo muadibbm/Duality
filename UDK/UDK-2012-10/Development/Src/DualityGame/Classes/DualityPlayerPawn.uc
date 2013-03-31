@@ -39,10 +39,10 @@ function AddDefaultInventory()
 
 
 function bool HandleBlueParticlePickup() {
-  local array<ParticleWeapon> WeaponList;
+  local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
-    InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
+    InvManager.CreateInventory(class'DualityGame.DualityWeaponBlue');
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
