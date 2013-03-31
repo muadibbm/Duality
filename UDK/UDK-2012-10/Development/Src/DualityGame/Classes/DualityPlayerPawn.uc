@@ -41,15 +41,15 @@ function bool ReorganizeParticles()
     Mesh.DetachComponent(weaponList[i].Particle);
   }
   for (i = 0; i < weaponList.Length; i++) {
-    if (i == 1) {
+    if (i == 0) {
       Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Weapon1');
-    } else if (i == 2) {
+    } else if (i == 1) {
       Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Weapon2');
-    } else if (i == 3) {
+    } else if (i == 2) {
       Mesh.AttachComponentToSocket(weaponList[2].Particle, 'Weapon3');
-    } else if (i == 4) {
+    } else if (i == 3) {
       Mesh.AttachComponentToSocket(weaponList[3].Particle, 'Weapon4');  
-    } else if (i == 5) {
+    } else if (i == 4) {
       Mesh.AttachComponentToSocket(weaponList[4].Particle, 'Weapon5');  
     }
   }
