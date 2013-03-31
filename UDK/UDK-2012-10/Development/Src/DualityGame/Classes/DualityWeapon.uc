@@ -38,6 +38,18 @@ simulated function vector GetPhysicalFireStartLoc(optional vector AimDir)
   return SocketLocation;
 }
 
+simulated function FireAmmunition()
+{
+  Local DualityPlayerPawn DP;
+
+  super.FireAmmunition();
+  DP = DualityPlayerPawn(Owner);
+  Destroy();
+  DP.ReorganizeParticles();
+  WorldInfo.ForceGarbageCollection();
+
+}
+
 // Fire projectile
 simulated function Projectile ProjectileFire()
 {
@@ -53,7 +65,7 @@ simulated function Projectile ProjectileFire()
   {
     SpawnedProjectile.Init( Vector(GetAdjustedAim( RealStartLoc )) );
   }
-    
+  
   // Return it up the line
   return SpawnedProjectile;
 }

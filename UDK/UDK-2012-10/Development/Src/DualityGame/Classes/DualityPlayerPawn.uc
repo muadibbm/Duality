@@ -9,13 +9,7 @@ var bool bParticle1TimerOn;
 simulated function PostBeginPlay()
 {
   super.PostBeginPlay();
-  if (controller.isA('DualityPlayerController')) {
-    `log("Wow, good stuff.");
-  } else {
-    `log("WTF IS WRONG WITH YOU");
-  }
   //Mesh.AttachComponentToSocket(blue, 'Blue');
-
   //Mesh.AttachComponentToSocket(green, 'Green');
   //Mesh.AttachComponentToSocket(purple, 'Purple');
   //Mesh.AttachComponentToSocket(yellow, 'Yellow');
@@ -25,7 +19,7 @@ simulated function PostBeginPlay()
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
-  super.postInitAnimTree(skelComp);
+  super.postInitAnimTree(SkelComp);
 }
 
 function AddDefaultInventory()
@@ -38,7 +32,34 @@ function AddDefaultInventory()
 }
 
 
-function bool HandleBlueParticlePickup() {
+function bool ReorganizeParticles() 
+{
+  local array<DualityWeapon> WeaponList;
+  local int i;
+  DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+  for (i = 0; i < weaponList.Length; i++) {
+    Mesh.DetachComponent(weaponList[i].Particle);
+  }
+  for (i = 0; i < weaponList.Length; i++) {
+    if (i == 1) {
+      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Weapon1');
+    } else if (i == 2) {
+      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Weapon2');
+    } else if (i == 3) {
+      Mesh.AttachComponentToSocket(weaponList[2].Particle, 'Weapon3');
+    } else if (i == 4) {
+      Mesh.AttachComponentToSocket(weaponList[3].Particle, 'Weapon4');  
+    } else if (i == 5) {
+      Mesh.AttachComponentToSocket(weaponList[4].Particle, 'Weapon5');  
+    }
+  }
+  return true;
+
+}
+
+
+function bool HandleBlueParticlePickup() 
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
@@ -48,7 +69,8 @@ function bool HandleBlueParticlePickup() {
   return false;
 }
 
-function bool HandleGreenParticlePickup() {
+function bool HandleGreenParticlePickup() 
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
@@ -58,7 +80,8 @@ function bool HandleGreenParticlePickup() {
   return false;
 }
 
-function bool HandleRedParticlePickup() {
+function bool HandleRedParticlePickup() 
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
@@ -68,7 +91,8 @@ function bool HandleRedParticlePickup() {
   return false;
 }
 
-function bool HandleYellowParticlePickup() {
+function bool HandleYellowParticlePickup() 
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
@@ -79,7 +103,8 @@ function bool HandleYellowParticlePickup() {
   return false;
 }
 
-function bool HandlePurpleParticlePickup() {
+function bool HandlePurpleParticlePickup() 
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length < 5) {
@@ -90,7 +115,8 @@ function bool HandlePurpleParticlePickup() {
   return false;
 }
 
-function bool AttachNewParticle(array<DualityWeapon> WeaponList){
+function bool AttachNewParticle(array<DualityWeapon> WeaponList)
+{
     weaponList.length = 0;
     DualityInventoryManager(InvManager).getWeaponList(WeaponList);
     if (weaponList.length == 1) {
@@ -112,12 +138,14 @@ function bool AttachNewParticle(array<DualityWeapon> WeaponList){
 
 }
 
-function ParticlePickupTimer () {
+function ParticlePickupTimer () 
+{
  // GroundSpeed=GroundSpeed*2.00;
  // bParticle1TimerOn=true;
 }
 
-function bool removeParticle(){
+function bool removeParticle()
+{
   local array<DualityWeapon> WeaponList;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
   if (weaponList.length > 0) {
