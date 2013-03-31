@@ -14,19 +14,22 @@ auto state Pickup {
 	{
     super.Touch(Other, OtherComp, HitLocation, HitNormal);
     `log("On touch!!" );
-    SetHidden(true);
 	}
 }
 
 function GiveTo(Pawn P)
 {
   local DualityPlayerController catPC;
-
   catPC= DualityPlayerController(P.controller);
-
-  if (catPC != None) {
-    DualityPlayerPawn(P).handleBlueParticlePickup();
-    pickedUpBy(P);
+  `log("GiveTo");
+  if (P.controller.isA('DualityPlayerController')) {
+    if (DualityPlayerPawn(P).handleBlueParticlePickup()) {
+	  pickedUpBy(P);
+      `log("Not None");
+      SetHidden(true);
+  	}
+  } else {
+  	`log("Should never happen");
   }
 }
 
@@ -49,7 +52,7 @@ defaultproperties
 
  
 
-	Begin Object Class=StaticMeshComponent Name=HealthPickUpMesh
+	Begin Object Class=StaticMeshComponent Name=BluePickUpMesh
     	StaticMesh=StaticMesh'Duality.Meshes.PS_BLUE'
 	 	CastShadow=FALSE
 		bCastDynamicShadow=FALSE
@@ -68,8 +71,8 @@ defaultproperties
 	End Object
 	
 	
-	PickupMesh=HealthPickUpMesh
-	Components.Add(HealthPickUpMesh)
+	PickupMesh=BluePickUpMesh
+	Components.Add(BluePickUpMesh)
 
 
 }

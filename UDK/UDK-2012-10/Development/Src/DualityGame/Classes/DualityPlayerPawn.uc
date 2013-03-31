@@ -1,6 +1,5 @@
 class DualityPlayerPawn extends DualityPawn;
 
-var ParticleSystemComponent blue;
 var ParticleSystemComponent green;
 var ParticleSystemComponent purple;
 var ParticleSystemComponent yellow;
@@ -10,11 +9,17 @@ var bool bParticle1TimerOn;
 simulated function PostBeginPlay()
 {
   super.PostBeginPlay();
-  Mesh.AttachComponentToSocket(blue, 'Blue');
-  Mesh.AttachComponentToSocket(green, 'Green');
-  Mesh.AttachComponentToSocket(purple, 'Purple');
-  Mesh.AttachComponentToSocket(yellow, 'Yellow');
-  Mesh.AttachComponentToSocket(red, 'Red');
+  if (controller.isA('DualityPlayerController')) {
+    `log("Wow, good stuff.");
+  } else {
+    `log("WTF IS WRONG WITH YOU");
+  }
+  //Mesh.AttachComponentToSocket(blue, 'Blue');
+
+  //Mesh.AttachComponentToSocket(green, 'Green');
+  //Mesh.AttachComponentToSocket(purple, 'Purple');
+  //Mesh.AttachComponentToSocket(yellow, 'Yellow');
+  //Mesh.AttachComponentToSocket(red, 'Red');
   AddDefaultInventory();
 }
 
@@ -25,80 +30,87 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 
 function AddDefaultInventory()
 {
-  InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
-  InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
+  //InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
+  //InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
   //InvManager.CreateInventory(class'DualityGame.RedParticleWeapon');
   //InvManager.CreateInventory(class'DualityGame.PurpleParticleWeapon');
   //InvManager.CreateInventory(class'DualityGame.YellowParticleWeapon');
 }
 
 
-function HandleBlueParticlePickup() {
-  Groundspeed = GroundSpeed/2.00;
-  addBlueParticle();
-
-  if (!bParticle1TimerON) {
-    SetTimer(10.0,false, 'ParticlePickupTimer');
-    bParticle1TimerOn=true;
+function bool HandleBlueParticlePickup() {
+  local array<ParticleWeapon> WeaponList;
+  DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+  if (weaponList.length < 5) {
+    InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
+    weaponList.length = 0;
+    DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+    if (weaponList.length == 1) {
+      `log("List size still 1");
+      Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Red');
+      return true;
+    } else if (weaponList.length == 2) {
+      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
+      `log("SHOULD ATTACH to socket, but not attaching to socket");
+      return true;
+    } else if ( weaponList.length == 3) {
+      Mesh.AttachComponentToSocket(weaponList[1].Particle, 'Yellow');
+      `log("Index is WRONG");
+    }
   }
+  `log("Weapon list is too large");
+  return false;
+  //GroundSpeed=GroundSpeed/2.00;
+  // Particle system component to attach to player
+ // Mesh.HideBoneByName('Blue',PBO_None );
+  //if (!bParticle1TimerON) {
+   // SetTimer(1.0,false, 'ParticlePickupTimewr');
+   // bParticle1TimerOn=true;
+  //}
 }
 
 
 function ParticlePickupTimer () {
-  GroundSpeed=GroundSpeed*2.00;
-  bParticle1TimerOn=true;
+ // GroundSpeed=GroundSpeed*2.00;
+ // bParticle1TimerOn=true;
 }
-
-
-function addBlueParticle()
-{
-  InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
-  Mesh.AttachComponentToSocket(blue, 'Blue');
-}
-
 
 
 DefaultProperties
 {
-  // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0
-        Template=ParticleSystem'Duality.ParticleSystem.PS_BLUE_SMALL'
-        bAutoActivate=true
-  End Object
-  blue=ParticleSystemComponent0
-  Components.Add(ParticleSystemComponent0);
+
 
   // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent1
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_GREEN
         Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN_SMALL'
         bAutoActivate=true
   End Object
-  green=ParticleSystemComponent1
- Components.Add(ParticleSystemComponent1);
+  green=ParticleSystemComponent_GREEN
+ //Components.Add(ParticleSystemComponent_GREEN);
 
   // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent2
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_PURPLE
         Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE_SMALL'
         bAutoActivate=true
   End Object
-  purple=ParticleSystemComponent2
- Components.Add(ParticleSystemComponent2);
+  purple=ParticleSystemComponent_PURPLE
+// Components.Add(ParticleSystemComponent_PURPLE);
 
   // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent3
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_YELLOW
         Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW_SMALL'
         bAutoActivate=true
   End Object
-  yellow=ParticleSystemComponent3
- Components.Add(ParticleSystemComponent3);
+  yellow=ParticleSystemComponent_YELLOW
+ //Components.Add(ParticleSystemComponent_YELLOW);
 
   // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent4
+  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_RED
         Template=ParticleSystem'Duality.ParticleSystem.PS_RED_SMALL'
         bAutoActivate=true
   End Object
-  red=ParticleSystemComponent4
-  Components.Add(ParticleSystemComponent4);
+  red=ParticleSystemComponent_RED
+ // Components.Add(ParticleSystemComponent_RED);
 
 
   // Player's health/mass

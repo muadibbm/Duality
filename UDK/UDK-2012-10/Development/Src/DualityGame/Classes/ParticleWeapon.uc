@@ -1,6 +1,8 @@
 class ParticleWeapon extends UDKWeapon;
 
 var float ProjectileSpawnOffset;
+var ParticleSystemComponent Particle;
+
 
 // Set position of mesh
 simulated event SetPosition(UDKPawn Holder)

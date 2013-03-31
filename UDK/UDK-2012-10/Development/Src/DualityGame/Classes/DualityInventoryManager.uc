@@ -12,27 +12,27 @@ class DualityInventoryManager extends InventoryManager;
 	
 	exec function switchweapon1()
 	{
-	  SwitchWeapon(1);
+	  SwitchWeapon(0);
 	}
 	
 	exec function switchweapon2()
 	{
-	  SwitchWeapon(2);
+	  SwitchWeapon(1);
 	}
 	
 	exec function switchweapon3()
 	{
-	  SwitchWeapon(3);
+	  SwitchWeapon(2);
 	}
 	
 	exec function switchweapon4()
 	{
-	  SwitchWeapon(4);
+	  SwitchWeapon(3);
 	}
 	
 	exec function switchweapon5()
 	{
-	  SwitchWeapon(5);	
+	  SwitchWeapon(4);	
 	}
 	
 	// Get list of all weapons in the inventory
@@ -69,7 +69,7 @@ class DualityInventoryManager extends InventoryManager;
 	  }
 	
 	  // Set weapon to be weapon at given position
-	  if (WeaponList.Length >= Position)
+	  if (WeaponList.Length > Position)
 	  {
 	    SetCurrentWeapon(WeaponList[Position]);
 	  }
