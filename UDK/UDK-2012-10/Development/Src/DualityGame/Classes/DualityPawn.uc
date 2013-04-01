@@ -12,7 +12,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 {
   super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
   Health = FMax(Health-Damage,0);
-  WorldInfo.Game.Broadcast(self,Name$": Health:"@Health);
+  //WorldInfo.Game.Broadcast(self,Name$": Health:"@Health);
   if (health <= 0) {
 
     if (deathAnim != none) {

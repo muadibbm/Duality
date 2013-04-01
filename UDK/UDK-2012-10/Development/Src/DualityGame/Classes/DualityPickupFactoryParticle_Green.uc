@@ -12,18 +12,17 @@ auto state Pickup {
 
   	event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
 	{
-    super.Touch(Other, OtherComp, HitLocation, HitNormal);
-    `log("On touch!!" );
+   		super.Touch(Other, OtherComp, HitLocation, HitNormal);
+
 	}
 }
 
 function GiveTo(Pawn P)
 {
-  `log("GiveTo");
+
   if (P.controller.isA('DualityPlayerController')) {
     if (DualityPlayerPawn(P).handleGreenParticlePickup()) {
 	  pickedUpBy(P);
-      `log("Not None");
       SetHidden(true);
   	}
   } else {
@@ -71,6 +70,4 @@ defaultproperties
 	
 	PickupMesh=GreenPickUpMesh
 	Components.Add(GreenPickUpMesh)
-
-
 }

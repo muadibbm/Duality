@@ -20,8 +20,6 @@ event PostBeginPlay()
 
 DefaultProperties
 {
-
- 
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'
         AnimSets(0)=AnimSet'Duality_Animations.AnimSets.ISOTOPE_ATTACKING'
@@ -41,5 +39,4 @@ DefaultProperties
     bCanJump=false
  
     GroundSpeed=250.0 
-
 }
