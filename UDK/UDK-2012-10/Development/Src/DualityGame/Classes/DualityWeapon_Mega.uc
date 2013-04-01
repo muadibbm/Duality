@@ -17,4 +17,5 @@ DefaultProperties
   Components.Add(ParticleSystemComponent_MEGA);
 
 	WeaponRange=1000
+  
 }
