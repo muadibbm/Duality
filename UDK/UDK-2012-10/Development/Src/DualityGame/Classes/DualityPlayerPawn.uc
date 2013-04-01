@@ -1,9 +1,17 @@
 class DualityPlayerPawn extends DualityPawn;
 
+var SkeletalMeshComponent PlayerMesh;
+var MaterialInstanceConstant PlayerMatInst;
+
 
 simulated function PostBeginPlay()
 {
   super.PostBeginPlay();
+
+  // Code for changing the material of the player to reflect health
+  PlayerMatInst = new class'MaterialInstanceConstant';
+  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(1));
+  PlayerMesh.SetMaterial(1, PlayerMatInst);
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -147,6 +155,20 @@ return true;
 
 }
 
+event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
+{
+  //local LinearColor matColor;
+
+  super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
+
+  // Code for changing player mesh color when health changes
+  if (health == 100) {
+    //matColor = MakeLinearColor(0,0,0,1);
+    //PlayerMatInst.SetVectorParameterValue('color', matColor);
+  }
+
+}
+
 
 function bool removeParticle()
 {
@@ -244,6 +266,7 @@ DefaultProperties
 
   // Set up collision cylinder for pawn
   Mesh=PawnMesh;
+  PlayerMesh=PawnMesh;
   Components.Add(PawnMesh); 
 
 }
