@@ -1,19 +1,9 @@
 class DualityPlayerPawn extends DualityPawn;
 
-var ParticleSystemComponent green;
-var ParticleSystemComponent purple;
-var ParticleSystemComponent yellow;
-var ParticleSystemComponent red;
-var bool bParticle1TimerOn;
 
 simulated function PostBeginPlay()
 {
   super.PostBeginPlay();
-  //Mesh.AttachComponentToSocket(blue, 'Blue');
-  //Mesh.AttachComponentToSocket(green, 'Green');
-  //Mesh.AttachComponentToSocket(purple, 'Purple');
-  //Mesh.AttachComponentToSocket(yellow, 'Yellow');
-  //Mesh.AttachComponentToSocket(red, 'Red');
   AddDefaultInventory();
 }
 
@@ -24,11 +14,7 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 
 function AddDefaultInventory()
 {
-  //InvManager.CreateInventory(class'DualityGame.GreenParticleWeapon');
-  //InvManager.CreateInventory(class'DualityGame.BlueParticleWeapon');
-  //InvManager.CreateInventory(class'DualityGame.RedParticleWeapon');
-  //InvManager.CreateInventory(class'DualityGame.PurpleParticleWeapon');
-  //InvManager.CreateInventory(class'DualityGame.YellowParticleWeapon');
+
 }
 
 
@@ -138,18 +124,17 @@ function bool AttachNewParticle(array<DualityWeapon> WeaponList)
 
 }
 
-function ParticlePickupTimer () 
-{
- // GroundSpeed=GroundSpeed*2.00;
- // bParticle1TimerOn=true;
-}
 
 function bool removeParticle()
 {
   local array<DualityWeapon> WeaponList;
+  local DualityWeapon w;
   DualityInventoryManager(InvManager).getWeaponList(WeaponList);
+  w = WeaponList[0];
   if (weaponList.length > 0) {
     InvManager.RemoveFromInventory(WeaponList[0]);
+    Mesh.DetachComponent(w.Particle);
+    ReorganizeParticles();
     return true;
   }
   return false;
@@ -158,38 +143,6 @@ function bool removeParticle()
 
 DefaultProperties
 {
-  // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_GREEN
-        Template=ParticleSystem'Duality.ParticleSystem.PS_GREEN_SMALL'
-        bAutoActivate=true
-  End Object
-  green=ParticleSystemComponent_GREEN
- //Components.Add(ParticleSystemComponent_GREEN);
-
-  // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_PURPLE
-        Template=ParticleSystem'Duality.ParticleSystem.PS_PURPLE_SMALL'
-        bAutoActivate=true
-  End Object
-  purple=ParticleSystemComponent_PURPLE
-// Components.Add(ParticleSystemComponent_PURPLE);
-
-  // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_YELLOW
-        Template=ParticleSystem'Duality.ParticleSystem.PS_YELLOW_SMALL'
-        bAutoActivate=true
-  End Object
-  yellow=ParticleSystemComponent_YELLOW
- //Components.Add(ParticleSystemComponent_YELLOW);
-
-  // Particle system component to attach to player
-  Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent_RED
-        Template=ParticleSystem'Duality.ParticleSystem.PS_RED_SMALL'
-        bAutoActivate=true
-  End Object
-  red=ParticleSystemComponent_RED
- // Components.Add(ParticleSystemComponent_RED);
-
 
   // Player's health/mass
   Health=1000;
@@ -233,14 +186,16 @@ DefaultProperties
 	  SkeletalMesh=SkeletalMesh'Duality.Meshes.catalyst'
   End Object
 
+  CollisionType=COLLIDE_BlockAll
+  Begin Object Name=CollisionCylinder
+    CollisionRadius=+0023.000000
+    CollisionHeight=+0050.000000
+  End Object
+  CylinderComponent=CollisionCylinder
+
 
   // Set up collision cylinder for pawn
   Mesh=PawnMesh;
   Components.Add(PawnMesh); 
-	CollisionType=COLLIDE_BlockAll
-	Begin Object Name=CollisionCylinder
-		CollisionRadius=+0023.000000
-		CollisionHeight=+0050.000000
-	End Object
-	CylinderComponent=CollisionCylinder
+
 }

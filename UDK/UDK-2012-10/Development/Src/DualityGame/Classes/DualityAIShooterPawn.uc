@@ -1,12 +1,10 @@
 class DualityAIShooterPawn extends DualityPawn
 	placeable;
 
-var name weapSocket;
 
 function AddDefaultInventory()
 {
-
-
+    InvManager.CreateInventory(class'DualityGame.DualityWeaponAIShooter');
 }
 
 event PostBeginPlay()
@@ -18,10 +16,7 @@ event PostBeginPlay()
 
 DefaultProperties
 {
-    Begin Object Name=CollisionCylinder
-        CollisionHeight=+44.000000
-    End Object
- 
+
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Mole'
         AnimSets(0)=AnimSet'Duality_Animations.AnimSets.MOLE_WALKING'

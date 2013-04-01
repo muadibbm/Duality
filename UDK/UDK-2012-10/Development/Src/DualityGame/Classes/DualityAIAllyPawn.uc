@@ -4,7 +4,7 @@ class DualityAIAllyPawn extends DualityPawn
 
 function AddDefaultInventory()
 {
-    InvManager.CreateInventory(class'DualityGame.DualityWeapon');
+    InvManager.CreateInventory(class'DualityGame.DualityWeaponAIAlly');
 }
 
 event PostBeginPlay()
@@ -20,14 +20,12 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 
 DefaultProperties
 {
-    Begin Object Name=CollisionCylinder
-        CollisionHeight=+44.000000
-    End Object
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Ally'
         AnimSets(0)=AnimSet'Duality_Animations.AnimSets.ALLY_ATTACKING'
- 	      AnimSets(1)=AnimSet'Duality_Animations.AnimSets.ALLY_IDLE'
+ 	    AnimSets(1)=AnimSet'Duality_Animations.AnimSets.ALLY_IDLE'
+        AnimSets(2)=AnimSet'Duality_Animations.AnimSets.ALLY_DYING'
         AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_ALLY'
         HiddenGame=FALSE
         HiddenEditor=FALSE
