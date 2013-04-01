@@ -3,7 +3,9 @@ class DualityAIAllyController extends DualityAIController;
 event PostBeginPlay()
 {
     super.PostBeginPlay();
-    NavigationHandle = new(self) class'NavigationHandle';
+    if ( NavigationHandle == None ) {
+        InitNavigationHandle();
+    }
 }
 
 event Possess(Pawn inPawn, bool bVehicleTransition)
@@ -19,20 +21,21 @@ auto state Idle
     {
         super.SeePlayer(Seen);
         if (seen.controller.isA('DualityAIEnemyController')) {
-          Pawn.LockDesiredRotation(false);
-          target = Seen;
-          GotoState('Follow');
+            if (seen.health > 0) {
+                Pawn.LockDesiredRotation(false);
+                target = Seen;
+                GotoState('Follow');
+            }
         }
     }
 Begin:
     waitForLanding();
-DoneWandering:
     if (pawn.desiredRotation == Rot(0,0,0)) {
       Pawn.setdesiredRotation(Rot(0,32768,0),true,false,,);
     } else {
       Pawn.setdesiredRotation(Rot(0,0,0),true,false,,);
     }
-    sleep(2.0 + rand(1.0));
+    sleep(2.0);
     Pawn.LockDesiredRotation(false);
     goto 'Begin';
 }
@@ -48,13 +51,13 @@ state Follow
  
         // Create constraints
         class'NavMeshPath_Toward'.static.TowardGoal( NavigationHandle,target );
-        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,800);
+        class'NavMeshGoal_At'.static.AtActor( NavigationHandle, target,32);
  
         // Find path
         return NavigationHandle.FindPath();
     }
 Begin:
- 
+    waitForLanding();
     if( NavigationHandle.ActorReachable( target) )
     {
         FlushPersistentDebugLines();
@@ -78,7 +81,7 @@ Begin:
         //We can't follow, so get the hell out of this state, otherwise we'll enter an infinite loop.
         GotoState('Idle');
     }
-    if (VSize(Pawn.Location - target.Location) <= 800)
+    if (VSize(Pawn.Location - target.Location) <= 1200)
     {
       pawn.zeromovementvariables();
       GotoState('shoot'); //Start shooting when close enough to the player.
@@ -93,12 +96,13 @@ state shoot
 {
 ignores seePlayer;
 Begin:
-    pawn.zeromovementvariables();
+    Pawn.ZeroMovementVariables();
     sleep(1);
+    SetFocalPoint(target.Location);
+    Focus = target;
     pawn.startfire(0);
     pawn.stopfire(0);
-    target.TakeDamage(4, self, vect(0,0,0), vect(0,0,0), None);
-    if (vsize( Pawn.location - target.location) > 800  || target.health <= 0) 
+    if (vsize( Pawn.location - target.location) > 1200  || target.health <= 0) 
     {
       GotoState('Idle');
     }
@@ -108,6 +112,6 @@ Begin:
 
 DefaultProperties
 {
-bIsPlayer=true
+    bIsPlayer=true
 }
 

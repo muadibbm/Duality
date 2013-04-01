@@ -3,7 +3,11 @@ class DualityAISuicidePawn extends DualityPawn
 
 function AddDefaultInventory()
 {
-  
+  InvManager.CreateInventory(class'DualityGame.DualityWeaponAISuicide');
+}
+
+function hide() {
+    mesh.setHidden(true);
 }
 
 event PostBeginPlay()
@@ -12,20 +16,11 @@ event PostBeginPlay()
     AddDefaultInventory(); //GameInfo calls it only for players, so we have to do it ourselves for AI.
 }
 
-simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
-{
-  super.postInitAnimTree(skelComp);
-  if (skelComp == mesh) {
-    deathAnim = AnimNodePlayCustomAnim(Mesh.FindAnimNode('dying'));
-  }
-}
 
 
 DefaultProperties
 {
-    Begin Object Name=CollisionCylinder
-        CollisionHeight=+44.000000
-    End Object
+
  
     Begin Object Class=SkeletalMeshComponent Name=SandboxPawnSkeletalMesh
         SkeletalMesh=SkeletalMesh'Duality.Meshes.Isotope'

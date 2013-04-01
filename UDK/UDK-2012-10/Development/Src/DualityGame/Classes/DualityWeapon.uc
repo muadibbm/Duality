@@ -41,12 +41,11 @@ simulated function vector GetPhysicalFireStartLoc(optional vector AimDir)
 simulated function FireAmmunition()
 {
   Local DualityPlayerPawn DP;
-
   super.FireAmmunition();
   DP = DualityPlayerPawn(Owner);
-  Destroy();
-  DP.ReorganizeParticles();
-  WorldInfo.ForceGarbageCollection();
+  if (DP != none) { 
+    DP.removeParticle();
+  }
 
 }
 
