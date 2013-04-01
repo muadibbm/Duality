@@ -147,8 +147,8 @@ function bool combineParticles(array<DualityWeapon> weaponList)
     
     //if (weaponList.length == 0) { //THIS IS ALWAYS FALSE?!?! WHY?!?!
     InvManager.CreateInventory(class'DualityGame.DualityWeapon_Mega'); //add MEGA to inventory
-    //AttachNewParticle(WeaponList);
-     Mesh.AttachComponentToSocket(weaponList[0].Particle, 'CANNON_LEFT'); //THIS SHOULD BE THE CENTER!  
+    AttachNewParticle(weaponList);
+    //Mesh.AttachComponentToSocket(weaponList[0].Particle, 'Weapon1'); //THIS SHOULD BE THE CENTER!  
   }
 
 return true;
@@ -157,15 +157,16 @@ return true;
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-  //local LinearColor matColor;
+  local LinearColor matColor;
 
   super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
 
   // Code for changing player mesh color when health changes
-  if (health == 100) {
-    //matColor = MakeLinearColor(0,0,0,1);
-    //PlayerMatInst.SetVectorParameterValue('color', matColor);
-  }
+ // if (health == 100) {
+  `log("Damge being taken");
+  matColor = MakeLinearColor(5,Health/2,Health*2,1);
+  PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
+  //}
 
 }
 
@@ -247,13 +248,16 @@ DefaultProperties
 	  BlockZeroExtent=true;
 	
 	  PhysicsAsset=PhysicsAsset'CH_AnimCorrupt.Mesh.SK_CH_Corrupt_Male_Physics'
-	  AnimSets(0)=AnimSet'Duality_Animations.AnimSets.CAT_IDLE'
-  	AnimSets(1)=AnimSet'Duality_Animations.AnimSets.CAT_FORWARD'
-	  AnimSets(2)=AnimSet'Duality_Animations.AnimSets.CAT_BACKWARD'
-  	AnimSets(3)=AnimSet'Duality_Animations.AnimSets.CAT_SHOOTING'
-    AnimSets(4)=AnimSet'Duality_Animations.AnimSets.CAT_DYING'
-	  AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_CATALYST'
-	  SkeletalMesh=SkeletalMesh'Duality.Meshes.catalyst'
+	  AnimSets(0)=AnimSet'Duality_Animations.AnimSets.CAT_IDLE2'
+  	AnimSets(1)=AnimSet'Duality_Animations.AnimSets.CAT_FORWARD2'
+	  AnimSets(2)=AnimSet'Duality_Animations.AnimSets.CAT_BACKWARD2'
+  	AnimSets(3)=AnimSet'Duality_Animations.AnimSets.CAT_SHOOTING2'
+    AnimSets(4)=AnimSet'Duality_Animations.AnimSets.CAT_DYING2'
+    AnimSets(5)=AnimSet'Duality_Animations.AnimSets.CAT_JUMP'
+    AnimSets(6)=AnimSet'Duality_Animations.AnimSets.CAT_LEFT'
+    AnimSets(7)=AnimSet'Duality_Animations.AnimSets.CAT_RIGHT'
+	  AnimTreeTemplate=AnimTree'Duality_Animations.AnimTrees.ANIM_CATALYST2'
+	  SkeletalMesh=SkeletalMesh'Duality.Meshes.CATALYST2'
   End Object
 
   CollisionType=COLLIDE_BlockAll
@@ -268,5 +272,4 @@ DefaultProperties
   Mesh=PawnMesh;
   PlayerMesh=PawnMesh;
   Components.Add(PawnMesh); 
-
 }
