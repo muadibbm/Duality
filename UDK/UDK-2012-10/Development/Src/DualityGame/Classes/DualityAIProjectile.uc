@@ -1,7 +1,7 @@
 class DualityAIProjectile extends UDKProjectile;
 
 defaultProperties {
-  projFiringParticle=ParticleSystem'ClassContent.particleSystems.BlastParticle'
+ // projFiringParticle=ParticleSystem'ClassContent.particleSystems.BlastParticle'
 
   speed=1000
   maxSpeed=1000

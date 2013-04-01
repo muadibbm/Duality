@@ -46,9 +46,11 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
   if (DamageRadius > 0.0)
   {
     Explode( HitLocation, HitNormal );
+    
   }
   else
   {
+    
     Other.TakeDamage(Damage,InstigatorController,HitLocation,MomentumTransfer * Normal(Velocity), MyDamageType,, self);
     Shutdown();
   }
@@ -77,6 +79,8 @@ simulated function SpawnExplosionEffects(vector HitLocation, vector HitNormal)
   {
     EffectAttachActor = None;
     WorldInfo.MyEmitterPool.SpawnEmitter(ProjExplosionTemplate, HitLocation, rotator(HitNormal), EffectAttachActor);
+  } else {
+
   }
 
 
@@ -87,6 +91,7 @@ simulated function SpawnExplosionEffects(vector HitLocation, vector HitNormal)
 // Handle when projectile hits a wall
 simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
 {
+
   Shutdown();
 }
 
@@ -142,10 +147,10 @@ DefaultProperties
 
   bBlockedByInstigator=false;
   TossZ=0.0
-  Speed=5000
+  Speed=2000
   MaxSpeed=10000
   AccelRate=4000
-  DamageRadius=200.0
+  DamageRadius=300.0
 
   bShuttingDown=false
 
