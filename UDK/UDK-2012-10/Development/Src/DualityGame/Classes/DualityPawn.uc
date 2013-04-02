@@ -2,10 +2,12 @@ class DualityPawn extends Pawn;
 
 
 var AnimNodePlayCustomAnim deathAnim;
+var bool freezeAI;
 
 event PostBeginPlay()
 {
   super.postBeginPlay();
+  freezeAI = false;
 }
 
 function hide() {

@@ -4,7 +4,7 @@ function Init(vector Direction)
 {
   local float aimZChange;
   `log("Direction: " @direction);
-  aimZChange = 0.1;
+  aimZChange = 0.1 + rand(0.4);
   Direction.z = Direction.z - aimZChange;
   `log("Direction after change: " @direction);
   super.init(direction);

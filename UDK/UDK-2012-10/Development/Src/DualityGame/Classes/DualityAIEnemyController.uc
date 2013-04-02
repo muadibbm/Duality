@@ -30,6 +30,10 @@ auto state Idle
     }
 Begin:
     waitForLanding();
+    if (DualityPawn(pawn).freezeAI) {
+        sleep(2.0);
+        goto 'Begin';
+    }
     if (pawn.health <= 0) {
         goto 'Died';
     }
@@ -69,6 +73,10 @@ Begin:
     waitForLanding();
     if (pawn.health <= 0) {
         goto 'Died';
+    }
+    if (DualityPawn(pawn).freezeAI) {
+        sleep(2.0);
+        goto 'Begin';
     }
     if( NavigationHandle.ActorReachable( target) )
     {
@@ -122,6 +130,10 @@ state shoot
 ignores seePlayer;
 Begin:
     Pawn.ZeroMovementVariables();
+    if (DualityPawn(pawn).freezeAI) {
+        sleep(2.0);
+        goto 'Begin';
+    }
     if (pawn.health <= 0) {
         goto 'Died';
     }
@@ -145,6 +157,10 @@ state Kamikaze
 {
 
 Begin:
+    if (DualityPawn(pawn).freezeAI) {
+        sleep(2.0);
+        goto 'Begin';
+    }
     Pawn.ZeroMovementVariables();
     pawn.startfire(0);
     pawn.stopfire(0);
