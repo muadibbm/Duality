@@ -30,6 +30,9 @@ auto state Idle
     }
 Begin:
     waitForLanding();
+    if (pawn.health <= 0) {
+        goto 'Died';
+    }
     if (pawn.desiredRotation == Rot(0,0,0)) {
       Pawn.setdesiredRotation(Rot(0,32768,0),true,false,,);
     } else {
@@ -38,6 +41,9 @@ Begin:
     sleep(2.0);
     Pawn.LockDesiredRotation(false);
     goto 'Begin';
+Died:
+    sleep(1);
+    DualityPawn(pawn).hide();
 }
  
 state Follow
@@ -58,6 +64,9 @@ state Follow
     }
 Begin:
     waitForLanding();
+    if (pawn.health <= 0) {
+        goto 'Died';
+    }
     if( NavigationHandle.ActorReachable( target) )
     {
         FlushPersistentDebugLines();
@@ -90,6 +99,9 @@ Begin:
     {
       goto 'Begin';
     }
+Died:
+    sleep(1);
+    DualityPawn(pawn).hide();
 }
 
 state shoot
@@ -97,16 +109,23 @@ state shoot
 ignores seePlayer;
 Begin:
     Pawn.ZeroMovementVariables();
+    if (pawn.health <= 0) {
+        goto 'Died';
+    }
     sleep(1);
     SetFocalPoint(target.Location);
     Focus = target;
     pawn.startfire(0);
     pawn.stopfire(0);
+    target.takeDamage(2, self, vect(0,0,0), vect(0,0,0), None);
     if (vsize( Pawn.location - target.location) > 1200  || target.health <= 0) 
     {
       GotoState('Idle');
     }
     goto 'Begin';
+Died:
+    sleep(1);
+    DualityPawn(pawn).hide();
 }
 
 

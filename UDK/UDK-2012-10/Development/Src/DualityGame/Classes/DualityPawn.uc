@@ -8,15 +8,20 @@ event PostBeginPlay()
   super.postBeginPlay();
 }
 
+function hide() {
+    mesh.setHidden(true);
+}
+
+
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
   super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
   Health = FMax(Health-Damage,0);
   //WorldInfo.Game.Broadcast(self,Name$": Health:"@Health);
   if (health <= 0) {
-
     if (deathAnim != none) {
       deathAnim.PlayCustomAnim('DIE',1.00f,,-1.f);
+      self.died(InstigatedBy, DamageType, HitLocation);
       SetPhysics(PHYS_Falling);
     }
   }

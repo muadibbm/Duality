@@ -6,9 +6,7 @@ function AddDefaultInventory()
   InvManager.CreateInventory(class'DualityGame.DualityWeaponAISuicide');
 }
 
-function hide() {
-    mesh.setHidden(true);
-}
+
 
 event PostBeginPlay()
 {

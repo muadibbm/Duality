@@ -1,10 +1,20 @@
 class DualityProjectileAIAlly extends DualityProjectile;
 
+function Init(vector Direction)
+{
+  local float aimZChange;
+  `log("Direction: " @direction);
+  aimZChange = 0.1;
+  Direction.z = Direction.z - aimZChange;
+  `log("Direction after change: " @direction);
+  super.init(direction);
+}
 
 DefaultProperties
 {
   ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.AIProjectile'
   ProjExplosionTemplate=ParticleSystem'WP_LinkGun.Effects.P_WP_Linkgun_Impact'
-  Damage=5
+  DamageRadius=1.0
+  Damage=20
 }
 

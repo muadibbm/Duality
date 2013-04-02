@@ -216,8 +216,8 @@ DefaultProperties
 {
 
   // Player's health/mass
-  Health=1000;
-  HealthMax=1000;
+  Health=2000;
+  HealthMax=2000;
   bCanPickupInventory=true;	
 	
   // Player initial speed
