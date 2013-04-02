@@ -2,7 +2,7 @@ class DualityPlayerPawn extends DualityPawn;
 
 var SkeletalMeshComponent PlayerMesh;
 var MaterialInstanceConstant PlayerMatInst;
-
+var int damageTaken;
 
 simulated function PostBeginPlay()
 {
@@ -163,8 +163,14 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
   // Code for changing player mesh color when health changes
  // if (health == 100) {
-  `log("Damge being taken");
-  matColor = MakeLinearColor(5,Health/2,Health*2,1);
+ // `log("Damge being taken");
+ // if (damage > 0){
+//	damageTaken = damageTaken + damage;
+//	matColor = MakeLinearColor(damage,0.1,Health/2,1);
+// }else{
+//	damageTaken = damageTaken--;
+	matColor = MakeLinearColor(damage,0.1,Health/2,1);
+//	}
   PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
   //}
 
@@ -217,9 +223,10 @@ DefaultProperties
 
   // Player's health/mass
   Health=2000;
-  HealthMax=2000;
+  HealthMax=5000;
   bCanPickupInventory=true;	
 	
+damageTaken = 0;
   // Player initial speed
   GroundSpeed=500
 
