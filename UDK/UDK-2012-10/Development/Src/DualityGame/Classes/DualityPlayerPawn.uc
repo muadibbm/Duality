@@ -10,8 +10,8 @@ simulated function PostBeginPlay()
 
   // Code for changing the material of the player to reflect health
   PlayerMatInst = new class'MaterialInstanceConstant';
-  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(1));
-  PlayerMesh.SetMaterial(1, PlayerMatInst);
+  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(6));
+  PlayerMesh.SetMaterial(6, PlayerMatInst);
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -119,7 +119,6 @@ function bool combineParticles(array<DualityWeapon> weaponList)
   foundYellow = false;
   foundPurple = false;
 
- `log("Combiner called!" );
 
   for (i = 0; i < weaponList.Length; i++) {
     if (weaponList[i].isA('DualityWeapon_Blue')) {
@@ -162,12 +161,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
   super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
 
   // Code for changing player mesh color when health changes
- // if (health == 100) {
- // `log("Damge being taken");
-  if (damage > 0){
-	 damageTaken = damageTaken + damage;
-	 matColor = MakeLinearColor(damage,0.1,Health/2,1);
- }
+
+  if (Damage > 0){
+    `log("DAMAGE TAKEN");
+	 matColor = MakeLinearColor(0,0.1,Health,1);
+   `log(Damage);
+ } //Health/HealthMax*10
   
   PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
 
@@ -219,11 +218,10 @@ DefaultProperties
 {
 
   // Player's health/mass
-  Health=2000;
-  HealthMax=5000;
+  Health=100;
+  HealthMax=100;
   bCanPickupInventory=true;	
 	
-damageTaken = 0;
   // Player initial speed
   GroundSpeed=500
 

@@ -41,7 +41,5 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 defaultproperties
 {
   bCanPickUpInventory=false
-  local vector = (0,0,50)
-  Mesh.SetTranslation(vector)
 }
 
