@@ -9,13 +9,9 @@ simulated function PostBeginPlay()
   super.PostBeginPlay();
 
   // Code for changing the material of the player to reflect health
-  PlayerMatInstA = new class'MaterialInstanceConstant';
-  PlayerMatInstB = new class'MaterialInstanceConstant';
-  PlayerMatInstC = new class'MaterialInstanceConstant';
-  PlayerMatInstD = new class'MaterialInstanceConstant';
-  PlayerMatInstE = new class'MaterialInstanceConstant';
-  PlayerMatInstA.SetParent(PlayerMesh.GetMaterial(1));
-  PlayerMesh.SetMaterial(1, PlayerMatInstA);
+  PlayerMatInst = new class'MaterialInstanceConstant';
+  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(1));
+  PlayerMesh.SetMaterial(1, PlayerMatInst);
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
