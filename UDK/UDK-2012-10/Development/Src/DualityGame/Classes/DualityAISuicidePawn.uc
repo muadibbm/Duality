@@ -37,4 +37,6 @@ DefaultProperties
     bCanJump=false
  
     GroundSpeed=250.0 
+    DrawScale=0.5f  
+
 }

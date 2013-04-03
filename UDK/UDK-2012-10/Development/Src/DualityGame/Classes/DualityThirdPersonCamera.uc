@@ -41,7 +41,7 @@ function ProcessViewRotation( float DeltaTime, Actor ViewTarget, out Rotator out
  
 DefaultProperties
 {
-  ThirdPersonCamOffsetX=-300.0
+  ThirdPersonCamOffsetX=-400.0
   ThirdPersonCamOffsetY=0.0
   ThirdPersonCamOffsetZ=-17.0
 }

@@ -164,15 +164,15 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
   // Code for changing player mesh color when health changes
  // if (health == 100) {
  // `log("Damge being taken");
- // if (damage > 0){
-//	damageTaken = damageTaken + damage;
-//	matColor = MakeLinearColor(damage,0.1,Health/2,1);
-// }else{
-//	damageTaken = damageTaken--;
-	matColor = MakeLinearColor(damage,0.1,Health/2,1);
-//	}
-  PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
-  //}
+  if (damage > 0){
+	 damageTaken = damageTaken + damage;
+	 matColor = MakeLinearColor(damage,0.1,Health/2,1);
+ }else{
+	 damageTaken = damageTaken--;
+	 matColor = MakeLinearColor(damage,0.1,Health/2,1);
+	}
+    PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
+  }
 
 }
 

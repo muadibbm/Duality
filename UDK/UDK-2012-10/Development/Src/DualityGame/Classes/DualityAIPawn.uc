@@ -36,5 +36,4 @@ DefaultProperties
     bCanJump=false
  
     GroundSpeed=300.0 
-
 }

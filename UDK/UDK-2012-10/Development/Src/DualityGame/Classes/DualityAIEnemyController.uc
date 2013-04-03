@@ -47,6 +47,11 @@ Begin:
     Pawn.LockDesiredRotation(false);
     goto 'Begin';
 Died:
+        Pawn.ZeroMovementVariables();
+    pawn.startfire(0);
+    pawn.stopfire(0);
+    DualityAISuicidePawn(Pawn).hide();
+    Pawn.died(self,none,Vect(0,0,0));
     sleep(1);
     DualityPawn(pawn).hide();
 }
@@ -121,6 +126,11 @@ Begin:
       }
     }
 Died:
+        Pawn.ZeroMovementVariables();
+    pawn.startfire(0);
+    pawn.stopfire(0);
+    DualityAISuicidePawn(Pawn).hide();
+    Pawn.died(self,none,Vect(0,0,0));
     sleep(1);
     DualityPawn(pawn).hide();
 }
@@ -149,6 +159,11 @@ Begin:
     sleep(1);
     goto 'Begin';
 Died:
+      Pawn.ZeroMovementVariables();
+    pawn.startfire(0);
+    pawn.stopfire(0);
+    DualityAISuicidePawn(Pawn).hide();
+    Pawn.died(self,none,Vect(0,0,0));
     sleep(1);
     DualityPawn(pawn).hide();
 }
