@@ -6,4 +6,5 @@ DefaultProperties
   ProjExplosionTemplate=ParticleSystem'Duality.ParticleSystem.PS_Explosion_Mega'
 
   DamageRadius=1000.0
+  Damage=10
 }

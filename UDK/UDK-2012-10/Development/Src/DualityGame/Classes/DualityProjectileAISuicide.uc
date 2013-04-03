@@ -14,7 +14,7 @@ DefaultProperties
   ProjExplosionTemplate=ParticleSystem'Duality.ParticleSystem.SuicideExplosion'
   Speed=5
   Lifespan=1
-  Damage=50
+  Damage=0.2
   DamageRadius=50.0
 }
 

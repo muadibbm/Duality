@@ -154,6 +154,6 @@ DefaultProperties
 
   bShuttingDown=false
 
-  Damage=250
+  Damage=100
   MomentumTransfer=10
 }

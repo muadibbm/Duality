@@ -10,8 +10,8 @@ simulated function PostBeginPlay()
 
   // Code for changing the material of the player to reflect health
   PlayerMatInst = new class'MaterialInstanceConstant';
-  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(6));
-  PlayerMesh.SetMaterial(6, PlayerMatInst);
+  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(5));
+  PlayerMesh.SetMaterial(5, PlayerMatInst);
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -164,12 +164,29 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
   if (Damage > 0){
     `log("DAMAGE TAKEN");
-	 matColor = MakeLinearColor(0,0.1,Health,1);
-   `log(Damage);
- } //Health/HealthMax*10
-  
-  PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
+    if (Health >= 0 && Health < 100){
+	     matColor = MakeLinearColor(50,0,Health,1);
 
+    }else if(Health >= 100 && Health < 300){
+      matColor = MakeLinearColor(40,0,Health,1);
+
+    }else if(Health >= 300 && Health < 500){
+      matColor = MakeLinearColor(30,0,Health/2,1);
+
+    }else if(Health >= 500 && Health < 700){
+      matColor = MakeLinearColor(20,0,Health/2,1);
+
+     }else if(Health >= 700 && Health < 900){
+      matColor = MakeLinearColor(10,0,Health/2,1);
+
+     }else if(Health >= 900 && Health <= HealthMax){
+      matColor = MakeLinearColor(5,0,Health/2,1);
+
+     }
+      
+      PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
+ } 
+  
 }
 
 
@@ -218,8 +235,8 @@ DefaultProperties
 {
 
   // Player's health/mass
-  Health=100;
-  HealthMax=100;
+  Health=1000;
+  HealthMax=1000;
   bCanPickupInventory=true;	
 	
   // Player initial speed

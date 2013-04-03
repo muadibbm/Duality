@@ -2,6 +2,9 @@ class DualityWeapon_Mega extends DualityWeapon;
 
 DefaultProperties
 {
+
+  MaxDesireability=0.700000
+
   FiringStatesArray(0)=WeaponFiring
   WeaponFireTypes(0)=EWFT_Projectile
   WeaponProjectiles(0)=class'DualityGame.DualityProjectile_Mega'

@@ -7,7 +7,7 @@ defaultProperties {
   maxSpeed=1000
   accelRate=2000.0
 
-  damage=10
+  damage=0.1
   damageRadius=0
   momentumTransfer=0
 

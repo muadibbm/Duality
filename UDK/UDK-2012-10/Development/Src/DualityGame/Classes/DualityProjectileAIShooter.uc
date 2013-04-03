@@ -16,6 +16,6 @@ DefaultProperties
   ProjExplosionTemplate=ParticleSystem'WP_LinkGun.Effects.P_WP_Linkgun_Impact'
   Lifespan=4.0
   DamageRadius=1.0
-  Damage=10
+  Damage=0.1
 }
 

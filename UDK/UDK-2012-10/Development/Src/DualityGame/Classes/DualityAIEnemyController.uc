@@ -42,12 +42,12 @@ Begin:
     } else {
       Pawn.setdesiredRotation(Rot(0,0,0),true,false,,);
     }
-    //`log("Enemy AI is rotating");
+    
     sleep(2.0);
     Pawn.LockDesiredRotation(false);
     goto 'Begin';
 Died:
-        Pawn.ZeroMovementVariables();
+    Pawn.ZeroMovementVariables();
     pawn.startfire(0);
     pawn.stopfire(0);
     DualityAISuicidePawn(Pawn).hide();

@@ -15,6 +15,6 @@ DefaultProperties
   ProjFlightTemplate=ParticleSystem'Duality.ParticleSystem.AIProjectile'
   ProjExplosionTemplate=ParticleSystem'WP_LinkGun.Effects.P_WP_Linkgun_Impact'
   DamageRadius=1.0
-  Damage=20
+  Damage=0.1
 }
 
