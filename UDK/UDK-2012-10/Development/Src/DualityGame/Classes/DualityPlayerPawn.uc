@@ -154,38 +154,53 @@ return true;
 
 }
 
+event Tick (float DeltaTime){
+  local LinearColor matColor;
+
+  if (Health >= 0 && Health < 50){
+       matColor = MakeLinearColor(0.00,0.00,0.0,0);
+
+    }else if (Health >= 50 && Health < 100){
+       matColor = MakeLinearColor(0.45,0.01,0.01,0);
+
+    }else if(Health >= 100 && Health < 200){
+      matColor = MakeLinearColor(0.43,0.01,0.02,0);
+
+    }else if(Health >= 200 && Health < 300){
+      matColor = MakeLinearColor(0.4,0.02,0.03,0);
+  
+    }else if(Health >= 300 && Health < 400){
+      matColor = MakeLinearColor(0.35,0.03,0.06,0);  
+ 
+    }else if(Health >= 400 && Health < 500){
+      matColor = MakeLinearColor(0.32,0.03,0.08,0);
+
+    }else if(Health >= 500 && Health < 600){
+      matColor = MakeLinearColor(0.28,0.04,0.11,0);
+
+    }else if(Health >= 600 && Health < 700){
+      matColor = MakeLinearColor(0.25,0.05,0.16,0);
+
+    }else if(Health >= 700 && Health < 800){
+      matColor = MakeLinearColor(0.2,0.06,0.23,0);
+
+     }else if(Health >= 800 && Health < 900){
+      matColor = MakeLinearColor(0.15,0.08,0.34,0);
+
+     }else if(Health >= 900 && Health <= HealthMax){
+      matColor = MakeLinearColor(0.05,0.14,0.76,0);
+     }
+      
+      PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
+}
+
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-  local LinearColor matColor;
+  
 
   super.TakeDamage(Damage,InstigatedBy, HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
 
   // Code for changing player mesh color when health changes
-
-  if (Damage > 0){
-    `log("DAMAGE TAKEN");
-    if (Health >= 0 && Health < 100){
-	     matColor = MakeLinearColor(50,0,Health,1);
-
-    }else if(Health >= 100 && Health < 300){
-      matColor = MakeLinearColor(40,0,Health,1);
-
-    }else if(Health >= 300 && Health < 500){
-      matColor = MakeLinearColor(30,0,Health/2,1);
-
-    }else if(Health >= 500 && Health < 700){
-      matColor = MakeLinearColor(20,0,Health/2,1);
-
-     }else if(Health >= 700 && Health < 900){
-      matColor = MakeLinearColor(10,0,Health/2,1);
-
-     }else if(Health >= 900 && Health <= HealthMax){
-      matColor = MakeLinearColor(5,0,Health/2,1);
-
-     }
-      
-      PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
- } 
   
 }
 
