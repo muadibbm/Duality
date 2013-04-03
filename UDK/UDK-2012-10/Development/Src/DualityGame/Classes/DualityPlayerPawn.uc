@@ -9,9 +9,13 @@ simulated function PostBeginPlay()
   super.PostBeginPlay();
 
   // Code for changing the material of the player to reflect health
-  PlayerMatInst = new class'MaterialInstanceConstant';
-  PlayerMatInst.SetParent(PlayerMesh.GetMaterial(1));
-  PlayerMesh.SetMaterial(1, PlayerMatInst);
+  PlayerMatInstA = new class'MaterialInstanceConstant';
+  PlayerMatInstB = new class'MaterialInstanceConstant';
+  PlayerMatInstC = new class'MaterialInstanceConstant';
+  PlayerMatInstD = new class'MaterialInstanceConstant';
+  PlayerMatInstE = new class'MaterialInstanceConstant';
+  PlayerMatInstA.SetParent(PlayerMesh.GetMaterial(1));
+  PlayerMesh.SetMaterial(1, PlayerMatInstA);
 }
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
@@ -167,12 +171,9 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
   if (damage > 0){
 	 damageTaken = damageTaken + damage;
 	 matColor = MakeLinearColor(damage,0.1,Health/2,1);
- }else{
-	 damageTaken = damageTaken--;
-	 matColor = MakeLinearColor(damage,0.1,Health/2,1);
-	}
-    PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
-  }
+ }
+  
+  PlayerMatInst.SetVectorParameterValue('Health_Color', matColor);
 
 }
 
